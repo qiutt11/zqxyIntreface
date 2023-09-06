@@ -1,0 +1,1408 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>接口自动化测试报告，测试结果如下：</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 120%; }
+table       { font-size: 100%; }
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">接口自动化测试报告，测试结果如下：</h1>
+<p class='attribute'><strong>测试人员 : </strong> 中青信用</p>
+<p class='attribute'><strong>开始时间 : </strong> 2021-01-11 22:42:18</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:17.972962</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 51，通过 50，失败 1，通过率= 98.04%</p>
+
+<p class='description'>用例执行情况：</p>
+</div>
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 98.04% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 1 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 50 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 51 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 16px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='failClass warning'>
+    <td>testCase.testInterface</td>
+    <td class="text-center">51</td>
+    <td class="text-center">50</td>
+    <td class="text-center">1</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',51)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='pt1_1' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__01_个人信用报告</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_1'>通过</button>
+    <div id='div_pt1_1' class="collapse in" align="left">
+    <pre>
+    
+pt1_1: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/personal_credit_report；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'FE5045413906900A677FF7F09EF86877', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376139135'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'personal_credit_report': {'code': '9100', 'msg': '查询成功有结果', 'data': {'court_discreditable': {'info': [{'exe_court': '', 'province': '北京市', 'case_no': '（2016）京0101执3599号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务', 'filing_time': '2016-06-13 00:00:00.000', 'case_detail': '判决如下：一、本判决生效后十日内，张伟偿还中国银行股份有限公司北京市分行信用卡欠款本金十九万八千八百九十七元零一分及截止至二○一五年四月二十日的利息十万六千八百七十四元一角三分、手费用十二元、滞纳金四万九千五百四十九元二角四分，共计人民币三十五万五千三百三十二元三角八分；二、自本判决生效之日起十日内，张伟支付中国银行股份有限公司北京市分行自二○一五年四月二十一日起至实际付清之日止的利息、滞纳金（按中国银行信用卡领用合约的约定计算）。如果未按本判决指定的期间履行给付金钱义务，应当依照《中华人民共和国民事诉讼法》第二百五十三条之规定，加倍支付迟延履行期间的债务利息。案件受理费六千六百三十元及公告费二百六十元，由张伟负担（自本判决生效后七日内交纳）。如不服本判决，可于判决书送达之日起十五日内，向本院递交上诉状，并按对方当事人的人数提出副本，并按照不服本判决部分的上诉请求数额，交纳上诉案件受理费，上诉于北京市第二中级人民法院。如在上诉期满后七日内未交纳上诉案件受理费的，按自动撤回上诉处理。'}, {'exe_court': '', 'province': '北京市', 'case_no': '2015年西执字第10385号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务的', 'filing_time': '2015-11-21 00:00:00.000', 'case_detail': ''}, {'exe_court': '', 'province': '北京市', 'case_no': '（2015）西执字第10385号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务', 'filing_time': '2015-11-21 00:00:00.000', 'case_detail': '判决如下：被告张伟于本判决生效之日起十日内偿还原告北京银行股份有限公司截止至二○一四年十二月二十八日的信用卡欠款合计三十七万七千五百一十六元七角九分，并按照北京银行信用卡领用合约的有关规定偿付自二○一四年十二月二十九日起至实际清偿之日止的利息、滞纳金和费用。如果被告张伟未按本判决指定的期间履行给付金钱义务，应当依照《中华人民共和国民事诉讼法》第二百五十三条之规定，加倍支付迟延履行期间的债务利息。案件受理费六千九百六十三元，由被告张伟负担（于本判决生效后七日内交纳）。'}]}, 'finance_overdue': '', 'mult_debt': '', 'negative_info': {'risk_level': 'C'}}}, 'query_id': '202101113354853731224219566300'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_2' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__02_黑名单核查报告</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_2'>通过</button>
+    <div id='div_pt1_2' class="collapse in" align="left">
+    <pre>
+    
+pt1_2: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/blacklist_report；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '016C038EA24C5358F1E8D208DE74BB22', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376139393'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'blacklist_report': {'code': '9100', 'msg': '查询成功有结果', 'data': {'court_discreditable': {'code': '9100', 'msg': '查询成功有结果', 'data': {'info': [{'exe_court': '', 'province': '北京市', 'case_no': '（2016）京0101执3599号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务', 'filing_time': '2016-06-13 00:00:00.000', 'case_detail': '判决如下：一、本判决生效后十日内，张伟偿还中国银行股份有限公司北京市分行信用卡欠款本金十九万八千八百九十七元零一分及截止至二○一五年四月二十日的利息十万六千八百七十四元一角三分、手费用十二元、滞纳金四万九千五百四十九元二角四分，共计人民币三十五万五千三百三十二元三角八分；二、自本判决生效之日起十日内，张伟支付中国银行股份有限公司北京市分行自二○一五年四月二十一日起至实际付清之日止的利息、滞纳金（按中国银行信用卡领用合约的约定计算）。如果未按本判决指定的期间履行给付金钱义务，应当依照《中华人民共和国民事诉讼法》第二百五十三条之规定，加倍支付迟延履行期间的债务利息。案件受理费六千六百三十元及公告费二百六十元，由张伟负担（自本判决生效后七日内交纳）。如不服本判决，可于判决书送达之日起十五日内，向本院递交上诉状，并按对方当事人的人数提出副本，并按照不服本判决部分的上诉请求数额，交纳上诉案件受理费，上诉于北京市第二中级人民法院。如在上诉期满后七日内未交纳上诉案件受理费的，按自动撤回上诉处理。'}, {'exe_court': '', 'province': '北京市', 'case_no': '2015年西执字第10385号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务的', 'filing_time': '2015-11-21 00:00:00.000', 'case_detail': ''}, {'exe_court': '', 'province': '北京市', 'case_no': '（2015）西执字第10385号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务', 'filing_time': '2015-11-21 00:00:00.000', 'case_detail': '判决如下：被告张伟于本判决生效之日起十日内偿还原告北京银行股份有限公司截止至二○一四年十二月二十八日的信用卡欠款合计三十七万七千五百一十六元七角九分，并按照北京银行信用卡领用合约的有关规定偿付自二○一四年十二月二十九日起至实际清偿之日止的利息、滞纳金和费用。如果被告张伟未按本判决指定的期间履行给付金钱义务，应当依照《中华人民共和国民事诉讼法》第二百五十三条之规定，加倍支付迟延履行期间的债务利息。案件受理费六千九百六十三元，由被告张伟负担（于本判决生效后七日内交纳）。'}]}}, 'finance_overdue': {'code': '9000', 'msg': '查询成功无结果'}, 'mult_debt': {'code': '9000', 'msg': '查询成功无结果'}, 'negative_info': {'data': {'risk_level': 'C'}, 'code': '9100', 'msg': '查询成功有数据'}}}, 'query_id': '202101118351622065224219087900'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_3' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__03_贷前申请反欺诈报告</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_3'>通过</button>
+    <div id='div_pt1_3' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_3' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_3'>通过</button>
+    <div id='div_pt1_3' class="collapse in" align="left">
+    <pre>
+    
+pt1_3: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/pre_lend_review_report；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'A9A75EFB1B3E2C3A7EBAA4628EFB502E', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376139578'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'pre_lend_review_report': {'code': '9100', 'msg': '查询成功有结果', 'data': {'detail': {'mult_debt_static': {'code': '9000', 'msg': '查询成功无结果'}, 'court_discreditable': {'code': '9100', 'msg': '查询成功有结果', 'data': {'info': [{'exe_court': '', 'province': '北京市', 'case_no': '（2016）京0101执3599号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务', 'filing_time': '2016-06-13 00:00:00.000', 'case_detail': '判决如下：一、本判决生效后十日内，张伟偿还中国银行股份有限公司北京市分行信用卡欠款本金十九万八千八百九十七元零一分及截止至二○一五年四月二十日的利息十万六千八百七十四元一角三分、手费用十二元、滞纳金四万九千五百四十九元二角四分，共计人民币三十五万五千三百三十二元三角八分；二、自本判决生效之日起十日内，张伟支付中国银行股份有限公司北京市分行自二○一五年四月二十一日起至实际付清之日止的利息、滞纳金（按中国银行信用卡领用合约的约定计算）。如果未按本判决指定的期间履行给付金钱义务，应当依照《中华人民共和国民事诉讼法》第二百五十三条之规定，加倍支付迟延履行期间的债务利息。案件受理费六千六百三十元及公告费二百六十元，由张伟负担（自本判决生效后七日内交纳）。如不服本判决，可于判决书送达之日起十五日内，向本院递交上诉状，并按对方当事人的人数提出副本，并按照不服本判决部分的上诉请求数额，交纳上诉案件受理费，上诉于北京市第二中级人民法院。如在上诉期满后七日内未交纳上诉案件受理费的，按自动撤回上诉处理。'}, {'exe_court': '', 'province': '北京市', 'case_no': '2015年西执字第10385号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务的', 'filing_time': '2015-11-21 00:00:00.000', 'case_detail': ''}, {'exe_court': '', 'province': '北京市', 'case_no': '（2015）西执字第10385号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务', 'filing_time': '2015-11-21 00:00:00.000', 'case_detail': '判决如下：被告张伟于本判决生效之日起十日内偿还原告北京银行股份有限公司截止至二○一四年十二月二十八日的信用卡欠款合计三十七万七千五百一十六元七角九分，并按照北京银行信用卡领用合约的有关规定偿付自二○一四年十二月二十九日起至实际清偿之日止的利息、滞纳金和费用。如果被告张伟未按本判决指定的期间履行给付金钱义务，应当依照《中华人民共和国民事诉讼法》第二百五十三条之规定，加倍支付迟延履行期间的债务利息。案件受理费六千九百六十三元，由被告张伟负担（于本判决生效后七日内交纳）。'}]}}, 'two_element': {'data': '认证信息匹配', 'code': '9100', 'msg': '校验成功匹配'}, 'three_element': {'code': '9600', 'msg': '无法验证', 'data': '未查得'}, 'check_phone_time': {'code': '9100', 'msg': '查询成功有数据', 'data': '[24,+)'}, 'check_phone_status': {'code': '9100', 'msg': '查询成功有数据', 'data': '移动-销号，未启用'}, 'negative_info': {'data': {'risk_level': 'C'}, 'code': '9100', 'msg': '查询成功有数据'}}, 'report': {'summary': {'mult_debt_static': {'in_12months_apply': 0, 'in_6months_apply': 0, 'in_18months_reject': 0, 'in_24months_reject': 0, 'in_6months_reg': 0, 'in_1months_reg': 0, 'in_3months_apply': 0, 'in_18months_apply': 0, 'in_3months_reject': 0, 'in_7days_reg': 0, 'in_1months_apply': 0, 'in_24months_reg': 0, 'in_12months_reg': 0, 'in_1months_reject': 0, 'in_6months_reject': 0, 'in_7days_apply': 0, 'in_18months_reg': 0, 'in_7days_reject': 0, 'in_3months_reg': 0, 'in_12months_reject': 0, 'in_24months_apply': 0}, 'court_discreditable': {'part_executed': 0, 'not_executed': 3}}, 'score': 24, 'abnormals': 3, 'risk': {'negative_info': 'H', 'identity': 'M', 'mult_debt_static': {'in_12months_apply': 'L', 'in_6months_apply': 'L', 'in_18months_reject': 'L', 'in_24months_reject': 'L', 'in_6months_reg': 'L', 'in_1months_reg': 'L', 'in_3months_apply': 'L', 'in_18months_apply': 'L', 'in_3months_reject': 'L', 'in_7days_reg': 'L', 'in_1months_apply': 'L', 'in_24months_reg': 'L', 'in_12months_reg': 'L', 'in_1months_reject': 'L', 'in_6months_reject': 'L', 'in_7days_apply': 'L', 'in_18months_reg': 'L', 'in_7days_reject': 'L', 'in_3months_reg': 'L', 'in_12months_reject': 'L', 'in_24months_apply': 'L'}, 'court_discreditable': 'H'}, 'score_risk': 'M'}}}, 'query_id': '202101117541320688224221743900'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_4' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__04_存量客户挖掘报告</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_4'>通过</button>
+    <div id='div_pt1_4' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_4' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_4'>通过</button>
+    <div id='div_pt1_4' class="collapse in" align="left">
+    <pre>
+    
+pt1_4: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/compliance_cons；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'E933CD4574C30486F5CBC803186C7120', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376141106'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'compliance_cons': {'code': '9100', 'msg': '查询成功有结果', 'data': {'score': '1'}}, 'query_id': '202101111699333586224221486900'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_5' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__05_风险评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_5'>通过</button>
+    <div id='div_pt1_5' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_5' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_5'>通过</button>
+    <div id='div_pt1_5' class="collapse in" align="left">
+    <pre>
+    
+pt1_5: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/risk_score；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '560FA65C201A475DB7634783AA9CEB7A', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376141400'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'risk_score': {'code': '9100', 'msg': '查询成功有结果', 'data': {'score': '599', 'level': '2'}}, 'query_id': '202101115458106074224221715704'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_6' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__06_授信评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_6' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_6'>通过</button>
+    <div id='div_pt1_6' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_6' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_6'>通过</button>
+    <div id='div_pt1_6' class="collapse in" align="left">
+    <pre>
+    
+pt1_6: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/credit_score；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '25E42D34FAF64A7CC3C44F7B56637AFE', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376141571'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'credit_score': {'code': '9100', 'msg': '查询成功有结果', 'data': {'score': '606', 'level': '5'}}, 'query_id': '202101112171200085224221244004'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_7' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__07_借款风险等级</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_7' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_7'>通过</button>
+    <div id='div_pt1_7' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_7' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_7'>通过</button>
+    <div id='div_pt1_7' class="collapse in" align="left">
+    <pre>
+    
+pt1_7: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/loan_risk_level；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '0FAD119E690BEFE141C13F2A436FACFE', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376141872'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'loan_risk_level': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101115197797652224222197404'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_8' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__08_电商标签</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_8'>通过</button>
+    <div id='div_pt1_8' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_8' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_8'>通过</button>
+    <div id='div_pt1_8' class="collapse in" align="left">
+    <pre>
+    
+pt1_8: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/e_commerce_tags；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'B2DC9A198CCC1AD62D9A685F60553215', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376142187'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'e_commerce_tags': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101117486909626224222641704'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_9' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__09_电商消费偏好变量</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_9'>通过</button>
+    <div id='div_pt1_9' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_9' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_9'>通过</button>
+    <div id='div_pt1_9' class="collapse in" align="left">
+    <pre>
+    
+pt1_9: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/prefer_consume；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '1980ACFA0278593C681BED83FEA8A4E7', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376142793'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'prefer_consume': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101112081017819224223617604'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_10' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__10_工作稳定性评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_10'>通过</button>
+    <div id='div_pt1_10' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_10' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_10'>通过</button>
+    <div id='div_pt1_10' class="collapse in" align="left">
+    <pre>
+    
+pt1_10: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/stable_wealth_report；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'B7E2F8846D8BE1AB598DB660E616A1BF', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376143137'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'stable_wealth_report': {'msg': '查询成功有结果', 'code': '9100', 'data': {'historical_pattern': '95', 'income_model': '0', 'stable_model': '0'}}, 'query_id': '202101115502853857224223733600'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_11' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__11_消费能力评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_11' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_11'>通过</button>
+    <div id='div_pt1_11' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_11' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_11'>通过</button>
+    <div id='div_pt1_11' class="collapse in" align="left">
+    <pre>
+    
+pt1_11: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/consume_score；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '609B477CF5EA2CB34BE36E64732DF179', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376143203'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'consume_score': {'code': '9000', 'msg': '查询成功无结果', 'data': {'score_consumption': 396}}, 'query_id': '202101110381969602224223282904'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_12' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__12_快递地址稳定性</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_12' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_12'>通过</button>
+    <div id='div_pt1_12' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_12' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_12'>通过</button>
+    <div id='div_pt1_12' class="collapse in" align="left">
+    <pre>
+    
+pt1_12: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/check_deliver_addr；请求方式:get
+加密前请求数据：{'addr': '北京市海淀区致真大厦', 'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'addr': 'ac23816b401c5c97705364e3fd4da50e6dc0a91c66e122f809d69e1c560ac364', 'app_key': 'data_test', 'digital_signature': '08699F948446C007BF9D7C4992E8617B', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376143518'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'check_deliver_addr': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101111017094445224224848004'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_13' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__13_疑似养卡数据核验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_13' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_13'>通过</button>
+    <div id='div_pt1_13' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_13' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_13'>通过</button>
+    <div id='div_pt1_13' class="collapse in" align="left">
+    <pre>
+    
+pt1_13: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/support_card；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'mobile': '13910684028', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'D9847F91E126B7BD3D07218348260AAD', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'timestamp': '1610376144120'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'support_card': {'msg': '查询成功有结果', 'code': '9200', 'data': '未命中疑似养卡'}, 'query_id': '202101113463048267224224380900'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_14' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__14_空号检测</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_14' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_14'>通过</button>
+    <div id='div_pt1_14' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_14' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_14'>通过</button>
+    <div id='div_pt1_14' class="collapse in" align="left">
+    <pre>
+    
+pt1_14: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/check_dead_phone；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'mobile': '13910684028', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '001A7A159902914C4B1245E8B4D54CE0', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'timestamp': '1610376144189'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'check_dead_phone': {'msg': '查询成功有结果', 'code': '9200', 'data': '空号'}, 'query_id': '202101115885847553224224642800'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_15' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__15_多头借贷</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_15' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_15'>通过</button>
+    <div id='div_pt1_15' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_15' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_15'>通过</button>
+    <div id='div_pt1_15' class="collapse in" align="left">
+    <pre>
+    
+pt1_15: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/mult_debt；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '5552D58DB09299636C49FD4658DBA1C4', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376144255'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'mult_debt': {'msg': '查询成功无结果', 'code': '9000'}, 'query_id': '202101114901194533224224105900'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_16' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__16_风险多头回溯</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_16' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_16'>通过</button>
+    <div id='div_pt1_16' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_16' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_16'>通过</button>
+    <div id='div_pt1_16' class="collapse in" align="left">
+    <pre>
+    
+pt1_16: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/mult_debt_static；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '378C8BC66DF9DA76FDA39F2036A8B80E', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376144320'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'mult_debt_static': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101112759919028224224893304'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_17' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__17_金融信贷逾期</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_17' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_17'>通过</button>
+    <div id='div_pt1_17' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_17' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_17'>通过</button>
+    <div id='div_pt1_17' class="collapse in" align="left">
+    <pre>
+    
+pt1_17: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/finance_overdue；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'CE2D3A843792CBA129357ABEBD5D892A', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376144473'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'finance_overdue': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101118800301081224224930204'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_18' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__18_高法失信被执行人</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_18' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_18'>通过</button>
+    <div id='div_pt1_18' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_18' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_18'>通过</button>
+    <div id='div_pt1_18' class="collapse in" align="left">
+    <pre>
+    
+pt1_18: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/court_discreditable；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '8544478ACA8C6BAE32AA02FAFE3343A1', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376144565'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'court_discreditable': {'msg': '查询成功有结果', 'code': '9100', 'data': {'info': [{'case_no': '（2016）京0101执3599号', 'case_detail': '判决如下：一、本判决生效后十日内，张伟偿还中国银行股份有限公司北京市分行信用卡欠款本金十九万八千八百九十七元零一分及截止至二○一五年四月二十日的利息十万六千八百七十四元一角三分、手费用十二元、滞纳金四万九千五百四十九元二角四分，共计人民币三十五万五千三百三十二元三角八分；二、自本判决生效之日起十日内，张伟支付中国银行股份有限公司北京市分行自二○一五年四月二十一日起至实际付清之日止的利息、滞纳金（按中国银行信用卡领用合约的约定计算）。如果未按本判决指定的期间履行给付金钱义务，应当依照《中华人民共和国民事诉讼法》第二百五十三条之规定，加倍支付迟延履行期间的债务利息。案件受理费六千六百三十元及公告费二百六十元，由张伟负担（自本判决生效后七日内交纳）。如不服本判决，可于判决书送达之日起十五日内，向本院递交上诉状，并按对方当事人的人数提出副本，并按照不服本判决部分的上诉请求数额，交纳上诉案件受理费，上诉于北京市第二中级人民法院。如在上诉期满后七日内未交纳上诉案件受理费的，按自动撤回上诉处理。', 'province': '北京市', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务', 'filing_time': '2016-06-13 00:00:00.000', 'exe_court': '', 'exe_status': '全部未履行'}, {'case_no': '2015年西执字第10385号', 'case_detail': '', 'province': '北京市', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务的', 'filing_time': '2015-11-21 00:00:00.000', 'exe_court': '', 'exe_status': '全部未履行'}, {'case_no': '（2015）西执字第10385号', 'case_detail': '判决如下：被告张伟于本判决生效之日起十日内偿还原告北京银行股份有限公司截止至二○一四年十二月二十八日的信用卡欠款合计三十七万七千五百一十六元七角九分，并按照北京银行信用卡领用合约的有关规定偿付自二○一四年十二月二十九日起至实际清偿之日止的利息、滞纳金和费用。如果被告张伟未按本判决指定的期间履行给付金钱义务，应当依照《中华人民共和国民事诉讼法》第二百五十三条之规定，加倍支付迟延履行期间的债务利息。案件受理费六千九百六十三元，由被告张伟负担（于本判决生效后七日内交纳）。', 'province': '北京市', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务', 'filing_time': '2015-11-21 00:00:00.000', 'exe_court': '', 'exe_status': '全部未履行'}]}}, 'query_id': '202101116556524109224224382000'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_19' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__19_个人整体涉诉</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_19' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_19'>通过</button>
+    <div id='div_pt1_19' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_19' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_19'>通过</button>
+    <div id='div_pt1_19' class="collapse in" align="left">
+    <pre>
+    
+pt1_19: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/overall_lawsuit；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'dataType': 'all', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'dataType': '6d5d0f53d1768beff132b284b4d63a8a', 'digital_signature': '963E2BB0A1FA89AC91F0B9866D4D7152', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376144643'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'overall_lawsuit': {'code': '9100', 'msg': '查询成功有结果', 'data': {'list': [{'id': 'c2020jin0105xingchu300_t20200601', 'caseTime': '2020年06月01日', 'content': '走私、贩卖、运输、制造毒品罪 ...', 'title': '张伟走私、贩卖、运输、制造毒品罪一审刑事判决书', 'dataType': '裁判文书', 'matchRatio': '0.4'}, {'id': 'c20193101minzhong15377_t20200106', 'caseTime': '2020年01月06日', 'content': '劳务派遣合同纠纷 被上诉人（原...', 'title': '张伟与上海外服（集团）有限公司等劳务派遣合同纠纷二审案件二审民事判决书', 'dataType': '裁判文书', 'matchRatio': '0.4'}, {'id': 'c2018310115minchu90465_t20190924', 'caseTime': '2019年09月24日', 'content': '劳务派遣合同纠纷 原告:张伟;...', 'title': '张伟与上海外服(集团)有限公司、上海比亚迪电动车有限公司劳务派遣合同纠纷一审民事判决书', 'dataType': '裁判文书', 'matchRatio': '0.4'}, {'id': 'c20193101minxiazhong266_t20190225', 'caseTime': '2019年02月25日', 'content': '劳务派遣合同纠纷 上诉人（原审...', 'title': '上海外服（集团）有限公司诉张伟劳务派遣合同纠纷一案二审民事裁定书', 'dataType': '裁判文书', 'matchRatio': '0.4'}, {'id': 'c2018310115minchu90465_t20181228', 'caseTime': '2018年12月28日', 'content': '劳务派遣合同纠纷 原告:张伟;...', 'title': '张伟与上海外服(集团)有限公司、上海比亚迪电动车有限公司劳务派遣合同纠纷一审民事裁定书', 'dataType': '裁判文书', 'matchRatio': '0.4'}, {'id': 'c20171471xinggeng845_t20171218', 'caseTime': '2017年12月18日', 'content': '破坏电力设备罪 罪犯:张伟 罪...', 'title': '张伟盗窃、破坏电力设备减刑刑事裁定书', 'dataType': '裁判文书', 'matchRatio': '0.4'}, {'id': 'c2016110101zhi3599_t20160725', 'caseTime': '2016年07月25日', 'content': '合同纠纷 被执行人:张伟;申请...', 'title': '中国银行股份有限公司北京市分行等其他合同纠纷一案', 'dataType': '裁判文书', 'matchRatio': '0.4'}, {'id': 'c2016110101zhi3599_t20160613_pzhangwei', 'caseTime': '2016年06月13日', 'content': '姓名/名称 张伟  性别 男 ...', 'title': '（2016）京0101执3599号（地方）', 'dataType': '曝光台', 'matchRatio': '0.99'}, {'id': 'c2016110101zhi3599_t20160613_pzhangwei', 'caseTime': '2016年06月13日', 'content': '其他有履行能力而拒不履行生效法...', 'title': '（2016）京0101执3599号', 'dataType': '失信公告', 'matchRatio': '0.99'}, {'id': 'c2016110101zhi3599_t20160613_pzhangwei', 'caseTime': '2016年06月13日', 'content': '基层法院 1306041985...', 'title': '(2016)京0101执3599号', 'dataType': '执行公告', 'matchRatio': '0.99'}], 'count': 20, 'judgeDocumentCount': '10', 'openCourtNoticeCount': '0', 'executeNoticeCount': '5', 'dishonestyNoticeCount': '3', 'courtAnnouncementCount': '0', 'caseProduceCount': '0', 'exposureCount': '2'}}, 'query_id': '202101115270193654224225443604'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_20' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__20_个人综合涉诉</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_20' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_20'>通过</button>
+    <div id='div_pt1_20' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_20' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_20'>通过</button>
+    <div id='div_pt1_20' class="collapse in" align="left">
+    <pre>
+    
+pt1_20: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/com_lawsuit；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'dataType': 'cpws', 'digital_signature': '', 'id': 'c2020jin0105xingchu300_t20200601', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'dataType': 'b7945f23a5816474caae85025526887f', 'digital_signature': 'C695240B816EC826A730C264304E788F', 'id': 'e93379189488338b76a81b87b417b32fc7df772433a9467c3cf7fcd5b32c8778440d8e3d56971a87e19d4c3541ba6d98', 'timestamp': '1610376145102'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'com_lawsuit': {'msg': '查询成功有结果', 'code': '9100', 'data': {'cpws': [{'partyFee': 'crime', 'yiju': '《中华人民共和国刑法》第三百四十七条第一款及第四款、第三百五十七条、第六十五条第一款、第五十二条、第五十三条、第六十四条、第六十一条的', 'partys': [{'birthday': '', 'partyTitle': '', 'pname': '太原市小店区人民检察院', 'partyPosition': '', 'partyType': '公司'}, {'birthday': '19850508', 'partyTitle': '', 'pname': '张伟', 'partyPosition': '', 'partyType': '自然人'}], 'sortTime': 1590940800000, 'dataType': 'cpws', 'anyouType': '', 'judgeResult': '一、被告人张伟犯贩卖毒品罪，判处有期徒刑五年六个月，并处罚金一万元。（刑期从判决执行之日起计算。判决执行以前先行羁押的，羁押一日折抵刑期一日，即自2019年12月11日起至2025年6月10日止；罚金在判决生效后三十日内缴纳，逾期不缴纳，强制缴纳。）二、没收被告人张伟的违法所得3140元人民币，上缴国库。如不服本判决，可在接到判决书的第二日起十日内，通过本院或者直接向太原市中级人民法院提出上诉。书面上诉的，应当提交上诉状正本一份，副本二份。审\u3000判\u3000长&amp;nbsp;&amp;nbsp;刘水莲人民陪审员&amp;nbsp;&amp;nbsp;张铁牛人民陪审员&amp;nbsp;&amp;nbsp;李继仙&amp;nbsp;二〇二〇年六月一日书\u3000记\u3000员&amp;nbsp;&amp;nbsp;朱厚都&amp;nbsp;&amp;nbsp;', 'body': '&lt;p&gt;&lt;p&gt;山西省太原市小店区人民法院 &lt;p&gt;刑事判决书 &lt;p&gt;（2020）晋0105刑初300号 &lt;p&gt;公诉机关太原市小店区人民检察院。 &lt;p&gt;被告人张伟，男，1985年5月8日出生于山西省武乡县，汉族，小学文化，无业，户籍住址：山西省武乡县监漳镇成家庄村前庄6号，拘前住太原市小店区坤泽十里城3号楼1单元1201室。2007年7月9日因犯破坏电力设备罪被山西省武乡县人民法院判处有期徒刑二年，缓刑三年；2010年1月19日因犯盗窃罪、破坏电力设备罪被山西省晋中市中级人民法院判处有期徒刑十四年，并处罚金三万元，2018年1月14日减刑释放；2019年11月29日因吸毒被太原市公安局小店分局行政拘留十五日。2019年12月11日因涉嫌犯贩卖毒品罪被太原市公安局小店分局刑事拘留，2020年1月17日经太原市小店区人民检察院批准逮捕，同日被太原市公安局小店分局执行逮捕，现羁押于太原市第二看守所。 &lt;p&gt;太原市小店区人民检察院以并小检刑刑诉[2020]216号起诉书指控被告人张伟犯贩卖毒品罪，于2020年4月20日向本院提起公诉。本院依法适用简易程序，组成合议庭，公开开庭审理了本案。太原市小店区人民检察院指派检察员闫锦萍出庭支持公诉，被告人张伟到庭参加了诉讼。现已审理终结。 &lt;p&gt;太原市小店区人民检察院指控： &lt;p&gt;2019年11月份以来，被告人张伟为无偿吸食毒品，多次以跑腿送货的方式帮助李小七（化名，身份不详）在太原市小店区坤泽十里城小区门口贩卖毒品，并通过李小七提供的微信二维码（微信昵称：给陪我多久@）截图收取毒资。 &lt;p&gt;1、张伟向程左峰贩卖毒品的事实 &lt;p&gt;2019年11月17日至28日期间，张伟帮助李小七向吸毒人员程左峰（已被行政处罚）贩卖毒品5次，约重2.5克，共收取毒资1940元。 &lt;p&gt;2、张伟向石林贩卖毒品的事实 &lt;p&gt;2019年11月13日至21日期间，张伟帮助李小七向吸毒人员石林（已被行政处罚）贩卖毒品4次，约重2克，共收取毒资1000元。 &lt;p&gt;3、张伟向魏浩宇贩卖毒品的事实 &lt;p&gt;2019年11月的一天，张伟帮助李小七向吸毒人员魏浩宇（已被行政处罚）贩卖毒品一次，约重0.5克，魏浩宇支付毒资200元。 &lt;p&gt;另查明，被告人张伟贩卖给吸毒人员程左峰、石林、魏浩宇的毒品均为甲卡西酮（长治筋）。 &lt;p&gt;上述事实，被告人张伟在开庭审理过程中亦无异议，且有抓获经过、证人证言、辨认笔录、微信转账记录截图、微信收款码、公安机关出具的情况说明、行政处罚决定书、社区戒毒决定书、刑事判决书、被告人的供述及常住人口信息等证据证实，足以认定。 &lt;p&gt;本院认为，被告人张伟明知甲卡西酮是毒品而多次向他人贩卖共计5克，情节严重，其行为构成贩卖毒品罪。公诉机关指控罪名成立。被告人张伟被判处有期徒刑以上刑罚，刑罚执行完毕后在五年内再犯应当判处有期徒刑以上刑罚之罪，是累犯，应从重处罚。被告人张伟当庭自愿认罪，可以酌情从轻处罚。依照《中华人民共和国刑法》第三百四十七条第一款及第四款、第三百五十七条、第六十五条第一款、第五十二条、第五十三条、第六十四条、第六十一条的规定，判决如下： &lt;p&gt;一、被告人张伟犯贩卖毒品罪，判处有期徒刑五年六个月，并处罚金一万元。 &lt;p&gt;（刑期从判决执行之日起计算。判决执行以前先行羁押的，羁押一日折抵刑期一日，即自2019年12月11日起至2025年6月10日止；罚金在判决生效后三十日内缴纳，逾期不缴纳，强制缴纳。） &lt;p&gt;二、没收被告人张伟的违法所得3140元人民币，上缴国库。 &lt;p&gt;如不服本判决，可在接到判决书的第二日起十日内，通过本院或者直接向太原市中级人民法院提出上诉。书面上诉的，应当提交上诉状正本一份，副本二份。 &lt;p&gt;审\u3000判\u3000长&amp;nbsp;&amp;nbsp; 刘水莲 &lt;p&gt;人民陪审员&amp;nbsp;&amp;nbsp; 张铁牛 &lt;p&gt;人民陪审员&amp;nbsp;&amp;nbsp; 李继仙 &lt;p&gt;&amp;nbsp; &lt;p&gt;二〇二〇年六月一日 &lt;p&gt;书\u3000记\u3000员&amp;nbsp;&amp;nbsp; 朱厚都 &lt;p&gt;&amp;nbsp; &lt;p&gt;&amp;nbsp;', 'court': '山西省太原市小店区人民法院', 'title': '张伟走私、贩卖、运输、制造毒品罪一审刑事判决书', 'caseNo': '（2020）晋0105刑初300号', 'caseType': '刑事判决书', 'courtRank': '4', 'caseCause': '走私、贩卖、运输、制造毒品罪', 'cpwsId': 'c2020jin0105xingchu300_t20200601', 'anyou': 'B324', 'judge': '', 'trialProcedure': '一审'}]}}, 'query_id': '202101114588451968224225692200'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_21' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__21_综合风险验证</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_21' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_21'>通过</button>
+    <div id='div_pt1_21' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_21' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_21'>通过</button>
+    <div id='div_pt1_21' class="collapse in" align="left">
+    <pre>
+    
+pt1_21: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/comprehensive_risk_verify；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '465C98D663F484093B5825F5F3D2604D', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376145197'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'comprehensive_risk_verify': {'code': '9100', 'msg': '查询成功有结果', 'data': {'level': '1'}}, 'query_id': '202101111496551074224225884204'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_22' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__22_重点人员核查评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_22' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_22'>通过</button>
+    <div id='div_pt1_22' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_22' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_22'>通过</button>
+    <div id='div_pt1_22' class="collapse in" align="left">
+    <pre>
+    
+pt1_22: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/crime_verify_score；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '6AF3281BD83F661EA90DE6D8FA632A90', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376145303'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'crime_verify_score': {'data': {'score': '59.07'}, 'code': '9100', 'msg': '查询成功有结果'}, 'query_id': '202101117648437961224225056800'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_23' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__23_重点关注人员评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_23' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_23'>通过</button>
+    <div id='div_pt1_23' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_23' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_23'>通过</button>
+    <div id='div_pt1_23' class="collapse in" align="left">
+    <pre>
+    
+pt1_23: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/attention_list；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'B07F48746F7B39CB7720EFFC96053AF7', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376145384'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'attention_list': {'data': {'score': '59.07'}, 'code': '9100', 'msg': '查询成功有结果'}, 'query_id': '202101118539620045224225317500'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_24' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__24_金融机构申请行为统计</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_24' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_24'>通过</button>
+    <div id='div_pt1_24' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_24' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_24'>通过</button>
+    <div id='div_pt1_24' class="collapse in" align="left">
+    <pre>
+    
+pt1_24: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/application_statistics；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '273FCF05DBCABDEE5C7584AD5F20685B', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376145469'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'application_statistics': {'code': '9100', 'msg': '查询成功有结果', 'data': {'loanSceneOrgCountStatistics': {'onlinePettyCashLoanDay7': '', 'onlineCashStagesDay7': '1', 'revolvingLoanDay7': '', 'underLineCashStagesDay7': '', 'underLineConsumeStagesDay7': '', 'autoFinanceDay7': '', 'onlineConsumeStagesDay7': '', 'otherLoanSceneDay7': '', 'onlinePettyCashLoanDay15': '', 'onlineCashStagesDay15': '1', 'revolvingLoanDay15': '', 'underLineCashStagesDay15': '', 'underLineConsumeStagesDay15': '', 'autoFinanceDay15': '', 'onlineConsumeStagesDay15': '', 'otherLoanSceneDay15': '', 'onlinePettyCashLoanMonth1': '', 'onlineCashStagesMonth1': '1', 'revolvingLoanMonth1': '', 'underLineCashStagesMonth1': '', 'underLineConsumeStagesMonth1': '', 'autoFinanceMonth1': '', 'onlineConsumeStagesMonth1': '', 'otherLoanSceneMonth1': '', 'onlinePettyCashLoanMonth3': '', 'onlineCashStagesMonth3': '1', 'revolvingLoanMonth3': '', 'underLineCashStagesMonth3': '', 'underLineConsumeStagesMonth3': '', 'autoFinanceMonth3': '', 'onlineConsumeStagesMonth3': '', 'otherLoanSceneMonth3': '', 'onlinePettyCashLoanMonth6': '', 'onlineCashStagesMonth6': '1', 'revolvingLoanMonth6': '', 'underLineCashStagesMonth6': '', 'underLineConsumeStagesMonth6': '', 'autoFinanceMonth6': '', 'onlineConsumeStagesMonth6': '', 'otherLoanSceneMonth6': '', 'onlinePettyCashLoanMonth12': '', 'onlineCashStagesMonth12': '1', 'revolvingLoanMonth12': '', 'underLineCashStagesMonth12': '', 'underLineConsumeStagesMonth12': '', 'autoFinanceMonth12': '', 'onlineConsumeStagesMonth12': '', 'otherLoanSceneMonth12': ''}, 'bankAttributeOrgCountStatistics': {'bankDay7': '', 'bankTraditionDay7': '', 'bankNetRetailDay7': '', 'bankDay15': '', 'bankTraditionDay15': '', 'bankNetRetailDay15': '', 'bankMonth1': '', 'bankTraditionMonth1': '', 'bankNetRetailMonth1': '', 'bankMonth3': '', 'bankTraditionMonth3': '', 'bankNetRetailMonth3': '', 'bankMonth6': '', 'bankTraditionMonth6': '', 'bankNetRetailMonth6': '', 'bankMonth12': '', 'bankTraditionMonth12': '', 'bankNetRetailMonth12': ''}, 'nonbankLoanSceneOrgCountStatistics': {'nonBankDay7': '1', 'p2pDay7': '', 'pettyLoanDay7': '', 'cashStagesDay7': '', 'consumeStagesDay7': '', 'compensatoryStagesDay7': '', 'otherNonBankLoanSceneDay7': '1', 'nonBankDay15': '1', 'p2pDay15': '', 'pettyLoanDay15': '', 'cashStagesDay15': '', 'consumeStagesDay15': '', 'compensatoryStagesDay15': '', 'otherNonBankLoanSceneDay15': '1', 'nonBankMonth1': '1', 'p2pMonth1': '', 'pettyLoanMonth1': '', 'cashStagesMonth1': '', 'consumeStagesMonth1': '', 'compensatoryStagesMonth1': '', 'otherNonBankLoanSceneMonth1': '1', 'nonBankMonth3': '1', 'p2pMonth3': '', 'pettyLoanMonth3': '', 'cashStagesMonth3': '', 'consumeStagesMonth3': '', 'compensatoryStagesMonth3': '', 'otherNonBankLoanSceneMonth3': '1', 'nonBankMonth6': '1', 'p2pMonth6': '', 'pettyLoanMonth6': '', 'cashStagesMonth6': '', 'consumeStagesMonth6': '', 'compensatoryStagesMonth6': '', 'otherNonBankLoanSceneMonth6': '1', 'nonBankMonth12': '1', 'p2pMonth12': '', 'pettyLoanMonth12': '', 'cashStagesMonth12': '', 'consumeStagesMonth12': '', 'compensatoryStagesMonth12': '', 'otherNonBankLoanSceneMonth12': '1'}, 'nonBankAttributeOrgCountStatistics': {'licensedNetPettyLoanDay7': '', 'licensedAutoFinanceDay7': '', 'licensedPettyLoanDay7': '', 'licensedConsumerFinanceDay7': '', 'licensedFinanceLeaseDay7': '', 'otherDay7': '1', 'licensedNetPettyLoanDay15': '', 'licensedAutoFinanceDay15': '', 'licensedPettyLoanDay15': '', 'licensedConsumerFinanceDay15': '', 'licensedFinanceLeaseDay15': '', 'otherDay15': '1', 'licensedNetPettyLoanMonth1': '', 'licensedAutoFinanceMonth1': '', 'licensedPettyLoanMonth1': '', 'licensedConsumerFinanceMonth1': '', 'licensedFinanceLeaseMonth1': '', 'otherMonth1': '1', 'licensedNetPettyLoanMonth3': '', 'licensedAutoFinanceMonth3': '', 'licensedPettyLoanMonth3': '', 'licensedConsumerFinanceMonth3': '', 'licensedFinanceLeaseMonth3': '', 'otherMonth3': '1', 'licensedNetPettyLoanMonth6': '', 'licensedAutoFinanceMonth6': '', 'licensedPettyLoanMonth6': '', 'licensedConsumerFinanceMonth6': '', 'licensedFinanceLeaseMonth6': '', 'otherMonth6': '1', 'licensedNetPettyLoanMonth12': '', 'licensedAutoFinanceMonth12': '', 'licensedPettyLoanMonth12': '', 'licensedConsumerFinanceMonth12': '', 'licensedFinanceLeaseMonth12': '', 'otherMonth12': '1'}, 'loanSceneApplyTimesStatistics': {'onlinePettyCashLoanDay7': '', 'onlineCashStagesDay7': '1', 'revolvingLoanDay7': '', 'underLineCashStagesDay7': '', 'underLineConsumeStagesDay7': '', 'autoFinanceDay7': '', 'onlineConsumeStagesDay7': '', 'otherLoanSceneDay7': '', 'onlinePettyCashLoanDay15': '', 'onlineCashStagesDay15': '2', 'revolvingLoanDay15': '', 'underLineCashStagesDay15': '', 'underLineConsumeStagesDay15': '', 'autoFinanceDay15': '', 'onlineConsumeStagesDay15': '', 'otherLoanSceneDay15': '', 'onlinePettyCashLoanMonth1': '', 'onlineCashStagesMonth1': '2', 'revolvingLoanMonth1': '', 'underLineCashStagesMonth1': '', 'underLineConsumeStagesMonth1': '', 'autoFinanceMonth1': '', 'onlineConsumeStagesMonth1': '', 'otherLoanSceneMonth1': '', 'onlinePettyCashLoanMonth3': '', 'onlineCashStagesMonth3': '6', 'revolvingLoanMonth3': '', 'underLineCashStagesMonth3': '', 'underLineConsumeStagesMonth3': '', 'autoFinanceMonth3': '', 'onlineConsumeStagesMonth3': '', 'otherLoanSceneMonth3': '', 'onlinePettyCashLoanMonth6': '', 'onlineCashStagesMonth6': '7', 'revolvingLoanMonth6': '', 'underLineCashStagesMonth6': '', 'underLineConsumeStagesMonth6': '', 'autoFinanceMonth6': '', 'onlineConsumeStagesMonth6': '', 'otherLoanSceneMonth6': '', 'onlinePettyCashLoanMonth12': '', 'onlineCashStagesMonth12': '7', 'revolvingLoanMonth12': '', 'underLineCashStagesMonth12': '', 'underLineConsumeStagesMonth12': '', 'autoFinanceMonth12': '', 'onlineConsumeStagesMonth12': '', 'otherLoanSceneMonth12': ''}, 'bankAttributeApplyTimesStatistics': {'bankDay7': '', 'bankTraditionDay7': '', 'bankNetRetailDay7': '', 'bankDay15': '', 'bankTraditionDay15': '', 'bankNetRetailDay15': '', 'bankMonth1': '', 'bankTraditionMonth1': '', 'bankNetRetailMonth1': '', 'bankMonth3': '', 'bankTraditionMonth3': '', 'bankNetRetailMonth3': '', 'bankMonth6': '', 'bankTraditionMonth6': '', 'bankNetRetailMonth6': '', 'bankMonth12': '', 'bankTraditionMonth12': '', 'bankNetRetailMonth12': ''}, 'nonbankLoanSceneApplyTimesStatistics': {'nonBankDay7': '1', 'p2pDay7': '', 'pettyLoanDay7': '', 'cashStagesDay7': '', 'consumeStagesDay7': '', 'compensatoryStagesDay7': '', 'otherNonBankLoanSceneDay7': '1', 'nonBankDay15': '2', 'p2pDay15': '', 'pettyLoanDay15': '', 'cashStagesDay15': '', 'consumeStagesDay15': '', 'compensatoryStagesDay15': '', 'otherNonBankLoanSceneDay15': '2', 'nonBankMonth1': '2', 'p2pMonth1': '', 'pettyLoanMonth1': '', 'cashStagesMonth1': '', 'consumeStagesMonth1': '', 'compensatoryStagesMonth1': '', 'otherNonBankLoanSceneMonth1': '2', 'nonBankMonth3': '6', 'p2pMonth3': '', 'pettyLoanMonth3': '', 'cashStagesMonth3': '', 'consumeStagesMonth3': '', 'compensatoryStagesMonth3': '', 'otherNonBankLoanSceneMonth3': '6', 'nonBankMonth6': '7', 'p2pMonth6': '', 'pettyLoanMonth6': '', 'cashStagesMonth6': '', 'consumeStagesMonth6': '', 'compensatoryStagesMonth6': '', 'otherNonBankLoanSceneMonth6': '7', 'nonBankMonth12': '7', 'p2pMonth12': '', 'pettyLoanMonth12': '', 'cashStagesMonth12': '', 'consumeStagesMonth12': '', 'compensatoryStagesMonth12': '', 'otherNonBankLoanSceneMonth12': '7'}, 'nonBankAttributeApplyTimesStatistics': {'licensedNetPettyLoanDay7': '', 'licensedAutoFinanceDay7': '', 'licensedPettyLoanDay7': '', 'licensedConsumerFinanceDay7': '', 'licensedFinanceLeaseDay7': '', 'otherDay7': '1', 'licensedNetPettyLoanDay15': '', 'licensedAutoFinanceDay15': '', 'licensedPettyLoanDay15': '', 'licensedConsumerFinanceDay15': '', 'licensedFinanceLeaseDay15': '', 'otherDay15': '2', 'licensedNetPettyLoanMonth1': '', 'licensedAutoFinanceMonth1': '', 'licensedPettyLoanMonth1': '', 'licensedConsumerFinanceMonth1': '', 'licensedFinanceLeaseMonth1': '', 'otherMonth1': '2', 'licensedNetPettyLoanMonth3': '', 'licensedAutoFinanceMonth3': '', 'licensedPettyLoanMonth3': '', 'licensedConsumerFinanceMonth3': '', 'licensedFinanceLeaseMonth3': '', 'otherMonth3': '6', 'licensedNetPettyLoanMonth6': '', 'licensedAutoFinanceMonth6': '', 'licensedPettyLoanMonth6': '', 'licensedConsumerFinanceMonth6': '', 'licensedFinanceLeaseMonth6': '', 'otherMonth6': '7', 'licensedNetPettyLoanMonth12': '', 'licensedAutoFinanceMonth12': '', 'licensedPettyLoanMonth12': '', 'licensedConsumerFinanceMonth12': '', 'licensedFinanceLeaseMonth12': '', 'otherMonth12': '7'}}}, 'query_id': '202101112787873538224226175204'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_25' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__25_风险多头回溯2_0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_25' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_25'>通过</button>
+    <div id='div_pt1_25' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_25' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_25'>通过</button>
+    <div id='div_pt1_25' class="collapse in" align="left">
+    <pre>
+    
+pt1_25: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/risk_mult_back；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '5F0927B2876C9DBFC050EFFC6EEB8E70', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376146222'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'risk_mult_back': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101119584995908224226612004'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_26' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__26_金融机构借还行为统计</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_26' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_26'>通过</button>
+    <div id='div_pt1_26' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_26' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_26'>通过</button>
+    <div id='div_pt1_26' class="collapse in" align="left">
+    <pre>
+    
+pt1_26: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/borrow_return_statistics；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '253EF77E2C50ACA9E5329B425335CC54', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376146414'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'borrow_return_statistics': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101119102049421224227317904'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_27' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__27_个人不良</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_27' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_27'>通过</button>
+    <div id='div_pt1_27' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_27' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_27'>通过</button>
+    <div id='div_pt1_27' class="collapse in" align="left">
+    <pre>
+    
+pt1_27: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/negative_info；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'B474323C4E7CA6DF01ADFA5449BDAFB8', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376147785'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'negative_info': {'msg': '查询成功有数据', 'code': '9100', 'data': {'risk_level': 'C'}}, 'query_id': '202101111169158032224227205300'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_28' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__28_实名认证</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_28' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_28'>通过</button>
+    <div id='div_pt1_28' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_28' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_28'>通过</button>
+    <div id='div_pt1_28' class="collapse in" align="left">
+    <pre>
+    
+pt1_28: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/two_element；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '173047D73E483AE2D254D6880DE457C1', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376147850'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'two_element': {'data': '认证信息匹配', 'code': '9100', 'msg': '校验成功匹配'}, 'query_id': '202101119514959512224227084000'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_29' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__29_运营商三要素认证详版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_29' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_29'>通过</button>
+    <div id='div_pt1_29' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_29' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_29'>通过</button>
+    <div id='div_pt1_29' class="collapse in" align="left">
+    <pre>
+    
+pt1_29: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/three_element；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '7CCEBCD8FD9E42D688550F3C5F129353', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376147918'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'three_element': {'code': '9600', 'msg': '无法验证', 'data': '未查得'}, 'query_id': '202101117195299541224228957904'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_30' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__30_银行卡三要素简版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_30' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_30'>通过</button>
+    <div id='div_pt1_30' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_30' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_30'>通过</button>
+    <div id='div_pt1_30' class="collapse in" align="left">
+    <pre>
+    
+pt1_30: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/three_bank_card；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'card_no': '6212261611004243401', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'card_no': '0885234c1b2e3fb1dce44ed9c999ce9c62ed7bc6329a876e46fd38123b301b74', 'digital_signature': '1A9B42F097809A86E0D4B0B2836CB0C9', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376148503'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'three_bank_card': {'code': '9200', 'msg': '校验成功不匹配', 'data': '认证信息不匹配'}, 'query_id': '202101116403014875224229920404'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_31' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__31_银行卡三要素详版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_31' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_31'>通过</button>
+    <div id='div_pt1_31' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_31' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_31'>通过</button>
+    <div id='div_pt1_31' class="collapse in" align="left">
+    <pre>
+    
+pt1_31: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/three_bank_card_detail；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'card_no': '6212261611004243401', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'card_no': '0885234c1b2e3fb1dce44ed9c999ce9c62ed7bc6329a876e46fd38123b301b74', 'digital_signature': '872E4539646B6DADB6585661BACB9DE3', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376149603'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'three_bank_card_detail': {'code': '9200', 'msg': '认证信息不匹配', 'data': '校验成功不匹配'}, 'query_id': '202101117811134806224230988104'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_32' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__32_银行卡四要素简版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_32' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_32'>通过</button>
+    <div id='div_pt1_32' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_32' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_32'>通过</button>
+    <div id='div_pt1_32' class="collapse in" align="left">
+    <pre>
+    
+pt1_32: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/four_element；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'card_no': '6212261611005243501', 'digital_signature': '', 'id_card': '445221198703211935', 'mobile': '13910685029', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'card_no': '2b1eb64e5c3bdd34a688618df2a0c549e22deee099a8813be0cd43fe7ca0220c', 'digital_signature': '1E049035B7318951B57ACA69DD1E843E', 'id_card': 'bb0ee3e23a3b34f952104298dd3e25ba5d0f4155eb4dd109e6384d44889c497b', 'mobile': '3d7f4b1062128842ffeafd9a88007c03', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376150426'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'four_element': {'code': '9200', 'msg': '校验成功不匹配', 'data': '认证信息不匹配'}, 'query_id': '202101113008718998224231224504'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_33' class='none'>
+    <td class='failCase'><div class='testcase'>test__33_银行卡四要素详版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_33' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_33'>失败</button>
+    <div id='div_ft1_33' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_33' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_33'>失败</button>
+    <div id='div_ft1_33' class="collapse in" align="left">
+    <pre>
+    
+ft1_33: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/four_element_detail；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'card_no': '6212261611004243401', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'card_no': '0885234c1b2e3fb1dce44ed9c999ce9c62ed7bc6329a876e46fd38123b301b74', 'digital_signature': '808CBCED84B267DD6213DD59A9F0C847', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376151130'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'four_element_detail': {'code': '9308', 'msg': '认证次数超限', 'data': '无法验证'}, 'query_id': '202101111303398782224231658404'}}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_34' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__34_运营商在网时长</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_34' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_34'>通过</button>
+    <div id='div_pt1_34' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_34' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_34'>通过</button>
+    <div id='div_pt1_34' class="collapse in" align="left">
+    <pre>
+    
+pt1_34: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/check_phone_time；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'mobile': '13910684028', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'A31A3BC8F38671E887D6D3CF37BFBC31', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'timestamp': '1610376151383'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'check_phone_time': {'msg': '查询成功有数据', 'code': '9100', 'data': '[24,+)'}, 'query_id': '202101118920340044224231346100'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_35' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__35_运营商在网状态</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_35' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_35'>通过</button>
+    <div id='div_pt1_35' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_35' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_35'>通过</button>
+    <div id='div_pt1_35' class="collapse in" align="left">
+    <pre>
+    
+pt1_35: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/check_phone_status；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'mobile': '13910684028', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '4ADA8AB2F234B160BD08B4F67FB011D0', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'timestamp': '1610376151524'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'check_phone_status': {'code': '9100', 'msg': '查询成功有数据', 'data': '移动-销号，未启用'}, 'query_id': '202101116404149644224232293704'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_36' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__36_人像对比</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_36' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_36'>通过</button>
+    <div id='div_pt1_36' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_36' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_36'>通过</button>
+    <div id='div_pt1_36' class="collapse in" align="left">
+    <pre>
+    
+pt1_36: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/portrait_compare；请求方式:post
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'photo': 'iVBORw0KGgoAAAANSUhEUgAABTIAAAMcCAYAAABjJlo', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '3B87D84B04A6FE7AD9DA9F81CE759310', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'photo': 'aece7f07debef6af7045816ce967b57513a54d694fdba914321d1a8e67325a5dbed7ebfb5b3dd2d3cc18b7eed2dc54a5', 'timestamp': '1610376152114'}
+
+接口返回数据：{'data': {}, 'err_msg': '图片大小不能小于5K', 'err_code': '-1002'}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_37' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__37_个人投资核查</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_37' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_37'>通过</button>
+    <div id='div_pt1_37' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_37' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_37'>通过</button>
+    <div id='div_pt1_37' class="collapse in" align="left">
+    <pre>
+    
+pt1_37: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/individual_investment_check；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '197DC5D563F87595C2010C6D963BEAE0', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'timestamp': '1610376152455'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'individual_investment_check': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101116324626819224232821404'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_38' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__38_运营商三要素认证简版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_38' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_38'>通过</button>
+    <div id='div_pt1_38' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_38' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_38'>通过</button>
+    <div id='div_pt1_38' class="collapse in" align="left">
+    <pre>
+    
+pt1_38: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/verify_name_mobile_card；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '9CCDFCAA0DCAF83337A0B639B6431B6B', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376152926'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'verify_name_mobile_card': {'msg': '校验成功匹配', 'code': '9100', 'data': '认证信息匹配'}, 'query_id': '202101114350456180224233353200'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_39' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__39_个人工商信息</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_39' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_39'>通过</button>
+    <div id='div_pt1_39' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_39' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_39'>通过</button>
+    <div id='div_pt1_39' class="collapse in" align="left">
+    <pre>
+    
+pt1_39: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/business_info；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'EB5E7C48BC3B74E464178DF3272BDA89', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'timestamp': '1610376153002'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'business_info': {'code': '9000', 'msg': '查询成功无结果', 'data': {'ryposfrsCount': '', 'ryposshas': [], 'ryposfrs': [], 'isHit': 1, 'rypospers': [], 'rypospersCount': '', 'ryposshasCount': ''}}, 'query_id': '202101112182284263224233486404'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_40' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__40_人证对比</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_40' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_40'>通过</button>
+    <div id='div_pt1_40' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_40' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_40'>通过</button>
+    <div id='div_pt1_40' class="collapse in" align="left">
+    <pre>
+    
+pt1_40: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/id_verify_photo；请求方式:post
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'photo': 'qaaaaaaaaaaaaaaaaaaaaaa', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '987801A26958D118365E3296F70B86E3', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'photo': '25e02851e973968234b8d9bf260546f1cb9310a60c98861d4eb06d989b44d8a4', 'timestamp': '1610376153290'}
+
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'id_verify_photo': {'code': '9301', 'msg': '无法验证认证信息'}, 'query_id': '202101118151541123224233202704'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_41' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__41_个人投资核查2_0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_41' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_41'>通过</button>
+    <div id='div_pt1_41' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_41' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_41'>通过</button>
+    <div id='div_pt1_41' class="collapse in" align="left">
+    <pre>
+    
+pt1_41: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v2/person/individual_investment_check；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '6C83E6B346CED3E8697067459BD977FD', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'timestamp': '1610376153440'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'individual_investment_check': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101110356305403224233379104'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_42' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__42_银行卡账户类型核验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_42' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_42'>通过</button>
+    <div id='div_pt1_42' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_42' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_42'>通过</button>
+    <div id='div_pt1_42' class="collapse in" align="left">
+    <pre>
+    
+pt1_42: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/bankcard_verify；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'card_no': '6212261611004243401', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'card_no': '0885234c1b2e3fb1dce44ed9c999ce9c62ed7bc6329a876e46fd38123b301b74', 'digital_signature': 'AFBDE5F7F3AA96ED07DC9D2A4497263F', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376153779'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'bankcard_verify': {'code': '9100', 'msg': '查询成功有结果', 'data': {'bankName': '中国工商银行', 'cardType': '1'}}, 'query_id': '202101118196213006224234386604'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_43' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__43_身份证有效期核验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_43' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_43'>通过</button>
+    <div id='div_pt1_43' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_43' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_43'>通过</button>
+    <div id='div_pt1_43' class="collapse in" align="left">
+    <pre>
+    
+pt1_43: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/validity_check；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'endDate': '20301009', 'id_card': '130604198505080610', 'name': '张伟', 'startDate': '20181009', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'F7ADF736A4C3D0B3674953426308C966', 'endDate': '218b7419a62e2b6017445526d4789fd8', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'startDate': '9e11a374daa6d356f4972c0f9fea01bc', 'timestamp': '1610376154573'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'validity_check': {'code': '9200', 'msg': '校检成功不匹配', 'data': '认证信息不匹配'}, 'query_id': '202101114109878184224235965004'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_44' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__44_车政通_车辆驾驶证查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_44' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_44'>通过</button>
+    <div id='div_pt1_44' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_44' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_44'>通过</button>
+    <div id='div_pt1_44' class="collapse in" align="left">
+    <pre>
+    
+pt1_44: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/vehicle_drivers_license；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'B6BD1929C5137CC922E31E6C2CCD90B5', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376155195'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_license': {'msg': '查询成功有结果', 'code': '9100', 'data': {'fzXzqu': '京A', 'xm': '张伟', 'idcard': '130604198505080610', 'sex': '1', 'zt': 'A', 'validStartDate': '2015-07-09', 'arrowCarType': 'C1', 'state2': 1, 'validEndDate': '2025-07-09', 'state1': 1, 'firstIssueDate': '2009-07-09'}}, 'query_id': '202101117803834630224235978400'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_45' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__45_车政通_车辆行驶证查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_45' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_45'>通过</button>
+    <div id='div_pt1_45' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_45' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_45'>通过</button>
+    <div id='div_pt1_45' class="collapse in" align="left">
+    <pre>
+    
+pt1_45: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/vehicle_drivers_permit；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'carno': '湘B2UU99', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'carno': 'd18a7c5a93b5c58218a43d2205ba1494', 'digital_signature': 'BAF959B92DDF82E2E9C91E043DB90497', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376155282'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_permit': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101112178802703224235408404'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_46' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__46_车政通_车辆行驶证查询详版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_46' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_46'>通过</button>
+    <div id='div_pt1_46' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_46' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_46'>通过</button>
+    <div id='div_pt1_46' class="collapse in" align="left">
+    <pre>
+    
+pt1_46: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/vehicle_drivers_permit_detailed；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'carno': '湘B2UU99', 'digital_signature': '', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'carno': 'd18a7c5a93b5c58218a43d2205ba1494', 'digital_signature': 'C31B2A06EEE7C8B292F43389F54B5418', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376155396'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_permit_detailed': {'msg': '查询成功有结果', 'code': '9100', 'data': {'owerState': 0, 'bodyColor': 'A', 'crossWeight': '2060', 'engineType': 'N20B20C', 'useType': '', 'productionDate': '2015-01-27', 'carNo': '湘B2UU99', 'displacement': '1997', 'frameVIN': 'E20139', 'vehicleType': '', 'maxJourney': '128', 'loadWeight': '', 'brandName': '宝马牌', 'passengers': '5', 'retirementDate': '', 'plateType': '02', 'validityDayEnd': '', 'engineNumber': '0167D601', 'carOwerType': '2', 'rearTread': '', 'frontTread': '', 'fuelType': 'A', 'wheelbase': '', 'curbWeight': '', 'firstIssueDate': '2015-05-21', 'vehicleStatus': 'G', 'shaft': ''}}, 'query_id': '202101115523563344224235269400'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_47' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__47_车牌号与姓名核验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_47' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_47'>通过</button>
+    <div id='div_pt1_47' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_47' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_47'>通过</button>
+    <div id='div_pt1_47' class="collapse in" align="left">
+    <pre>
+    
+pt1_47: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/vehicle_drivers_name；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'carno': '湘B2UU99', 'digital_signature': '', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'carno': 'd18a7c5a93b5c58218a43d2205ba1494', 'digital_signature': '22FB463615A624475947903A67C13377', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376155477'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_name': {'code': '9100', 'msg': '查询成功有结果', 'data': {'owerState': 0}}, 'query_id': '202101118300318062224235812504'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_48' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__48_名下车产数量</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_48' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_48'>通过</button>
+    <div id='div_pt1_48' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_48' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_48'>通过</button>
+    <div id='div_pt1_48' class="collapse in" align="left">
+    <pre>
+    
+pt1_48: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/vehicle_drivers_num；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '78DC86C2E5F07C0DAA8CE1FA739926A4', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'timestamp': '1610376155570'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_num': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202101116369929368224235227904'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_49' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__49_车辆驾驶证查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_49' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_49'>通过</button>
+    <div id='div_pt1_49' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_49' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_49'>通过</button>
+    <div id='div_pt1_49' class="collapse in" align="left">
+    <pre>
+    
+pt1_49: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/vehicle_drivers_license；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'E296177F6975C2DE25C52DB1541F1418', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1610376155660'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_license': {'msg': '查询成功有结果', 'code': '9100', 'data': {'fzXzqu': '京A', 'xm': '张伟', 'idcard': '130604198505080610', 'sex': '1', 'zt': 'A', 'validStartDate': '2015-07-09', 'arrowCarType': 'C1', 'state2': 1, 'validEndDate': '2025-07-09', 'state1': 1, 'firstIssueDate': '2009-07-09'}}, 'query_id': '202101112972512289224235455900'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_50' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__50_车牌和身份证一致校验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_50' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_50'>通过</button>
+    <div id='div_pt1_50' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_50' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_50'>通过</button>
+    <div id='div_pt1_50' class="collapse in" align="left">
+    <pre>
+    
+pt1_50: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/vehicle_drivers_idcard；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'carno': '鲁RQ5273', 'digital_signature': '', 'id_card': '64030219910312003X', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'carno': 'debd2b91be76c4c257afa89d9712a6e4', 'digital_signature': 'C6CAD4E18F2B929CCAE14141880CC133', 'id_card': '3db34e358e80921cbe544d40898f91004427b9556c95b041a8f1866c25cdf1a4', 'timestamp': '1610376155745'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_idcard': {'code': '9100', 'msg': '查询成功有结果', 'data': {'idcardState': 0}}, 'query_id': '202101116307251898224235488704'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_51' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__51_车架号与身份证一致校验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_51' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_51'>通过</button>
+    <div id='div_pt1_51' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_51' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_51'>通过</button>
+    <div id='div_pt1_51' class="collapse in" align="left">
+    <pre>
+    
+pt1_51: ******************测试开始前准备*******************
+请求url地址：http://172.17.153.72:8091/v1/person/vehicle_drivers_vin；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '64030219910312003X', 'timestamp': '', 'vin': 'LSVG026R9F2086645'}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '58E7DC92AAD211DAE3D5A8F6BC1139A5', 'id_card': '3db34e358e80921cbe544d40898f91004427b9556c95b041a8f1866c25cdf1a4', 'timestamp': '1610376155897', 'vin': 'c434c8053087855de84b14d68876e4d336840a914b39d6fcb734cdd2e3944950'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_vin': {'code': '9100', 'msg': '查询成功有结果', 'data': {'vinState': 0}}, 'query_id': '202101115900095026224236061404'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>51</td>
+    <td>50</td>
+    <td>1</td>
+    <td>0</td>
+    <td>通过率：98.04%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+</body>
+</html>

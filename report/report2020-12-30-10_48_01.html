@@ -1,0 +1,1600 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>接口自动化测试报告，测试结果如下：</title>
+    <meta name="generator" content="HTMLTestRunner 0.8.2.2"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    
+<style type="text/css" media="screen">
+body        { font-family: Microsoft YaHei,Tahoma,arial,helvetica,sans-serif;padding: 20px; font-size: 120%; }
+table       { font-size: 100%; }
+/* -- heading ---------------------------------------------------------------------- */
+.heading {
+    margin-top: 0ex;
+    margin-bottom: 1ex;
+}
+.heading .description {
+    margin-top: 4ex;
+    margin-bottom: 6ex;
+}
+/* -- report ------------------------------------------------------------------------ */
+#total_row  { font-weight: bold; }
+.passCase   { color: #5cb85c; }
+.failCase   { color: #d9534f; font-weight: bold; }
+.errorCase  { color: #f0ad4e; font-weight: bold; }
+.hiddenRow  { display: none; }
+.testcase   { margin-left: 2em; }
+</style>
+
+</head>
+<body >
+<script language="javascript" type="text/javascript">
+output_list = Array();
+/*level 调整增加只显示通过用例的分类 --Findyou
+0:Summary //all hiddenRow
+1:Failed  //pt hiddenRow, ft none
+2:Pass    //pt none, ft hiddenRow
+3:All     //pt none, ft none
+*/
+function showCase(level) {
+    trs = document.getElementsByTagName("tr");
+    for (var i = 0; i < trs.length; i++) {
+        tr = trs[i];
+        id = tr.id;
+        if (id.substr(0,2) == 'ft') {
+            if (level == 2 || level == 0 ) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+        if (id.substr(0,2) == 'pt') {
+            if (level < 2) {
+                tr.className = 'hiddenRow';
+            }
+            else {
+                tr.className = '';
+            }
+        }
+    }
+    //加入【详细】切换文字变化 --Findyou
+    detail_class=document.getElementsByClassName('detail');
+	//console.log(detail_class.length)
+	if (level == 3) {
+		for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="收起"
+		}
+	}
+	else{
+			for (var i = 0; i < detail_class.length; i++){
+			detail_class[i].innerHTML="详细"
+		}
+	}
+}
+function showClassDetail(cid, count) {
+    var id_list = Array(count);
+    var toHide = 1;
+    for (var i = 0; i < count; i++) {
+        //ID修改 点 为 下划线 -Findyou
+        tid0 = 't' + cid.substr(1) + '_' + (i+1);
+        tid = 'f' + tid0;
+        tr = document.getElementById(tid);
+        if (!tr) {
+            tid = 'p' + tid0;
+            tr = document.getElementById(tid);
+        }
+        id_list[i] = tid;
+        if (tr.className) {
+            toHide = 0;
+        }
+    }
+    for (var i = 0; i < count; i++) {
+        tid = id_list[i];
+        //修改点击无法收起的BUG，加入【详细】切换文字变化 --Findyou
+        if (toHide) {
+            document.getElementById(tid).className = 'hiddenRow';
+            document.getElementById(cid).innerText = "详细"
+        }
+        else {
+            document.getElementById(tid).className = '';
+            document.getElementById(cid).innerText = "收起"
+        }
+    }
+}
+function html_escape(s) {
+    s = s.replace(/&/g,'&amp;');
+    s = s.replace(/</g,'&lt;');
+    s = s.replace(/>/g,'&gt;');
+    return s;
+}
+</script>
+<div class='heading'>
+<h1 style="font-family: Microsoft YaHei">接口自动化测试报告，测试结果如下：</h1>
+<p class='attribute'><strong>测试人员 : </strong> 中青信用</p>
+<p class='attribute'><strong>开始时间 : </strong> 2020-12-30 10:48:01</p>
+<p class='attribute'><strong>合计耗时 : </strong> 0:00:48.051460</p>
+<p class='attribute'><strong>测试结果 : </strong> 共 51，通过 18，失败 33，通过率= 35.29%</p>
+
+<p class='description'>用例执行情况：</p>
+</div>
+
+
+<p id='show_detail_line'>
+<a class="btn btn-primary" href='javascript:showCase(0)'>概要{ 35.29% }</a>
+<a class="btn btn-danger" href='javascript:showCase(1)'>失败{ 33 }</a>
+<a class="btn btn-success" href='javascript:showCase(2)'>通过{ 18 }</a>
+<a class="btn btn-info" href='javascript:showCase(3)'>所有{ 51 }</a>
+</p>
+<table id='result_table' class="table table-condensed table-bordered table-hover">
+<colgroup>
+<col align='left' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+<col align='right' />
+</colgroup>
+<tr id='header_row' class="text-center success" style="font-weight: bold;font-size: 16px;">
+    <td>用例集/测试用例</td>
+    <td>总计</td>
+    <td>通过</td>
+    <td>失败</td>
+    <td>错误</td>
+    <td>详细</td>
+</tr>
+
+<tr class='failClass warning'>
+    <td>testCase.testInterface</td>
+    <td class="text-center">51</td>
+    <td class="text-center">18</td>
+    <td class="text-center">33</td>
+    <td class="text-center">0</td>
+    <td class="text-center"><a href="javascript:showClassDetail('c1',51)" class="detail" id='c1'>详细</a></td>
+</tr>
+
+<tr id='ft1_1' class='none'>
+    <td class='failCase'><div class='testcase'>test__01_个人信用报告</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_1' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_1'>失败</button>
+    <div id='div_ft1_1' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_1' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_1'>失败</button>
+    <div id='div_ft1_1' class="collapse in" align="left">
+    <pre>
+    
+ft1_1: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/personal_credit_report；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '2FBAC62158DB72327A7A0051E1138446', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296482835'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_2' class='none'>
+    <td class='failCase'><div class='testcase'>test__02_黑名单核查报告</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_2' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_2'>失败</button>
+    <div id='div_ft1_2' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_2' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_2'>失败</button>
+    <div id='div_ft1_2' class="collapse in" align="left">
+    <pre>
+    
+ft1_2: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/blacklist_report；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '390C0A3CBEC71DB41DEB64436C16950B', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296483060'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_3' class='none'>
+    <td class='failCase'><div class='testcase'>test__03_贷前申请反欺诈报告</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_3' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_3'>失败</button>
+    <div id='div_ft1_3' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_3' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_3'>失败</button>
+    <div id='div_ft1_3' class="collapse in" align="left">
+    <pre>
+    
+ft1_3: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/pre_lend_review_report；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'FE15BFB75F3126C9FB5264D02B1DF24A', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296483145'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_4' class='none'>
+    <td class='failCase'><div class='testcase'>test__04_存量客户挖掘报告</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_4' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_4'>失败</button>
+    <div id='div_ft1_4' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_4' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_4'>失败</button>
+    <div id='div_ft1_4' class="collapse in" align="left">
+    <pre>
+    
+ft1_4: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/compliance_cons；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '2DFA14555BED152C04B3722F40823CAC', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296483285'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_5' class='none'>
+    <td class='failCase'><div class='testcase'>test__05_风险评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_5' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_5'>失败</button>
+    <div id='div_ft1_5' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_5' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_5'>失败</button>
+    <div id='div_ft1_5' class="collapse in" align="left">
+    <pre>
+    
+ft1_5: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/risk_score；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'CE1FD9F459BBAC4DCD10A26E5196516E', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296483398'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_6' class='none'>
+    <td class='failCase'><div class='testcase'>test__06_授信评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_6' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_6'>失败</button>
+    <div id='div_ft1_6' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_6' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_6'>失败</button>
+    <div id='div_ft1_6' class="collapse in" align="left">
+    <pre>
+    
+ft1_6: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/credit_score；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '55BE05BF53ACEB8E4B530DB9ED87311A', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296483485'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_7' class='none'>
+    <td class='failCase'><div class='testcase'>test__07_借款风险等级</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_7' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_7'>失败</button>
+    <div id='div_ft1_7' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_7' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_7'>失败</button>
+    <div id='div_ft1_7' class="collapse in" align="left">
+    <pre>
+    
+ft1_7: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/loan_risk_level；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'C9251EB11FAE56A1C3235F0143FDA678', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296483567'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_8' class='none'>
+    <td class='failCase'><div class='testcase'>test__08_电商标签</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_8' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_8'>失败</button>
+    <div id='div_ft1_8' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_8' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_8'>失败</button>
+    <div id='div_ft1_8' class="collapse in" align="left">
+    <pre>
+    
+ft1_8: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/e_commerce_tags；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '005A883A7797CEEA5DE12BC6ABBE2864', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296483680'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_9' class='none'>
+    <td class='failCase'><div class='testcase'>test__09_电商消费偏好变量</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_9' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_9'>失败</button>
+    <div id='div_ft1_9' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_9' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_9'>失败</button>
+    <div id='div_ft1_9' class="collapse in" align="left">
+    <pre>
+    
+ft1_9: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/prefer_consume；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '774E7C8CEB61190C0368C2AE9AA1DCA4', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296483784'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_10' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__10_工作稳定性评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_10' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_10'>通过</button>
+    <div id='div_pt1_10' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_10' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_10'>通过</button>
+    <div id='div_pt1_10' class="collapse in" align="left">
+    <pre>
+    
+pt1_10: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/stable_wealth_report；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '4FF3EEDA6892033B8136E60062831AB3', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296483893'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'stable_wealth_report': {'code': '9100', 'msg': '查询成功有结果', 'data': {'income_model': '0', 'stable_model': '0', 'historical_pattern': '91'}}, 'query_id': '202012307871849952104805214004'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_11' class='none'>
+    <td class='failCase'><div class='testcase'>test__11_消费能力评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_11' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_11'>失败</button>
+    <div id='div_ft1_11' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_11' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_11'>失败</button>
+    <div id='div_ft1_11' class="collapse in" align="left">
+    <pre>
+    
+ft1_11: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/consume_score；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'CB4A481C27AE6D49F4493CD5448F2913', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296484993'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_12' class='none'>
+    <td class='failCase'><div class='testcase'>test__12_快递地址稳定性</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_12' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_12'>失败</button>
+    <div id='div_ft1_12' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_12' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_12'>失败</button>
+    <div id='div_ft1_12' class="collapse in" align="left">
+    <pre>
+    
+ft1_12: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/check_deliver_addr；请求方式:get
+加密前请求数据：{'addr': '北京市海淀区致真大厦', 'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'addr': 'ac23816b401c5c97705364e3fd4da50e6dc0a91c66e122f809d69e1c560ac364', 'app_key': 'data_test', 'digital_signature': '17E639C7DFFD3AE7B066357FA71AFA4E', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296485136'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_13' class='none'>
+    <td class='failCase'><div class='testcase'>test__13_疑似养卡数据核验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_13' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_13'>失败</button>
+    <div id='div_ft1_13' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_13' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_13'>失败</button>
+    <div id='div_ft1_13' class="collapse in" align="left">
+    <pre>
+    
+ft1_13: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/support_card；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'mobile': '13910684028', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '69FDBECDCAE1C71003545F897507A614', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'timestamp': '1609296485213'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_14' class='none'>
+    <td class='failCase'><div class='testcase'>test__14_空号检测</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_14' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_14'>失败</button>
+    <div id='div_ft1_14' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_14' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_14'>失败</button>
+    <div id='div_ft1_14' class="collapse in" align="left">
+    <pre>
+    
+ft1_14: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/check_dead_phone；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'mobile': '13910684028', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '8BC11B46C389278B00B98032CFCEA2C6', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'timestamp': '1609296485317'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_15' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__15_多头借贷</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_15' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_15'>通过</button>
+    <div id='div_pt1_15' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_15' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_15'>通过</button>
+    <div id='div_pt1_15' class="collapse in" align="left">
+    <pre>
+    
+pt1_15: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/mult_debt；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '770E80167F11CE17FF8A61F1B2134634', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296485414'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'mult_debt': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202012308868068807104807540004'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_16' class='none'>
+    <td class='failCase'><div class='testcase'>test__16_风险多头回溯</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_16' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_16'>失败</button>
+    <div id='div_ft1_16' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_16' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_16'>失败</button>
+    <div id='div_ft1_16' class="collapse in" align="left">
+    <pre>
+    
+ft1_16: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/mult_debt_static；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'A4B17B20E3DDA7B7E52AD438D5A40674', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296486075'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_17' class='none'>
+    <td class='failCase'><div class='testcase'>test__17_金融信贷逾期</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_17' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_17'>失败</button>
+    <div id='div_ft1_17' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_17' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_17'>失败</button>
+    <div id='div_ft1_17' class="collapse in" align="left">
+    <pre>
+    
+ft1_17: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/finance_overdue；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '2C1BE17CA83AA671AE8CE502ABF08372', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296486186'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_18' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__18_高法失信被执行人</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_18' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_18'>通过</button>
+    <div id='div_pt1_18' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_18' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_18'>通过</button>
+    <div id='div_pt1_18' class="collapse in" align="left">
+    <pre>
+    
+pt1_18: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/court_discreditable；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '1B7C6761E329DD50A089E65C571FFC92', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296486254'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'court_discreditable': {'code': '9100', 'msg': '查询成功有结果', 'data': {'info': [{'exe_court': '', 'province': '北京市', 'case_no': '（2016）京0101执3599号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务', 'filing_time': '2016-06-13 00:00:00.000', 'case_detail': '判决如下：一、本判决生效后十日内，张伟偿还中国银行股份有限公司北京市分行信用卡欠款本金十九万八千八百九十七元零一分及截止至二○一五年四月二十日的利息十万六千八百七十四元一角三分、手费用十二元、滞纳金四万九千五百四十九元二角四分，共计人民币三十五万五千三百三十二元三角八分；二、自本判决生效之日起十日内，张伟支付中国银行股份有限公司北京市分行自二○一五年四月二十一日起至实际付清之日止的利息、滞纳金（按中国银行信用卡领用合约的约定计算）。如果未按本判决指定的期间履行给付金钱义务，应当依照《中华人民共和国民事诉讼法》第二百五十三条之规定，加倍支付迟延履行期间的债务利息。案件受理费六千六百三十元及公告费二百六十元，由张伟负担（自本判决生效后七日内交纳）。如不服本判决，可于判决书送达之日起十五日内，向本院递交上诉状，并按对方当事人的人数提出副本，并按照不服本判决部分的上诉请求数额，交纳上诉案件受理费，上诉于北京市第二中级人民法院。如在上诉期满后七日内未交纳上诉案件受理费的，按自动撤回上诉处理。'}, {'exe_court': '', 'province': '北京市', 'case_no': '2015年西执字第10385号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务的', 'filing_time': '2015-11-21 00:00:00.000', 'case_detail': ''}, {'exe_court': '', 'province': '北京市', 'case_no': '（2015）西执字第10385号', 'exe_status': '全部未履行', 'case_type': '其他有履行能力而拒不履行生效法律文书确定义务', 'filing_time': '2015-11-21 00:00:00.000', 'case_detail': '判决如下：被告张伟于本判决生效之日起十日内偿还原告北京银行股份有限公司截止至二○一四年十二月二十八日的信用卡欠款合计三十七万七千五百一十六元七角九分，并按照北京银行信用卡领用合约的有关规定偿付自二○一四年十二月二十九日起至实际清偿之日止的利息、滞纳金和费用。如果被告张伟未按本判决指定的期间履行给付金钱义务，应当依照《中华人民共和国民事诉讼法》第二百五十三条之规定，加倍支付迟延履行期间的债务利息。案件受理费六千九百六十三元，由被告张伟负担（于本判决生效后七日内交纳）。'}]}}, 'query_id': '202012300822014238104807348604'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_19' class='none'>
+    <td class='failCase'><div class='testcase'>test__19_个人整体涉诉</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_19' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_19'>失败</button>
+    <div id='div_ft1_19' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_19' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_19'>失败</button>
+    <div id='div_ft1_19' class="collapse in" align="left">
+    <pre>
+    
+ft1_19: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/overall_lawsuit；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'dataType': 'all', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'dataType': '6d5d0f53d1768beff132b284b4d63a8a', 'digital_signature': '471EF392FDEB38ABD23C1EF82BF54643', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296486874'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_20' class='none'>
+    <td class='failCase'><div class='testcase'>test__20_个人综合涉诉</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_20' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_20'>失败</button>
+    <div id='div_ft1_20' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_20' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_20'>失败</button>
+    <div id='div_ft1_20' class="collapse in" align="left">
+    <pre>
+    
+ft1_20: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/com_lawsuit；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'dataType': 'cpws', 'digital_signature': '', 'id': 'c2020jin0105xingchu300_t20200601', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'dataType': 'b7945f23a5816474caae85025526887f', 'digital_signature': '660C3286F237C4BE9676717847F480E0', 'id': 'e93379189488338b76a81b87b417b32fc7df772433a9467c3cf7fcd5b32c8778440d8e3d56971a87e19d4c3541ba6d98', 'timestamp': '1609296486971'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_21' class='none'>
+    <td class='failCase'><div class='testcase'>test__21_综合风险验证</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_21' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_21'>失败</button>
+    <div id='div_ft1_21' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_21' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_21'>失败</button>
+    <div id='div_ft1_21' class="collapse in" align="left">
+    <pre>
+    
+ft1_21: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/comprehensive_risk_verify；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'BDBB620C82ACB6E262212F44A682B528', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296487045'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_22' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__22_重点人员核查评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_22' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_22'>通过</button>
+    <div id='div_pt1_22' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_22' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_22'>通过</button>
+    <div id='div_pt1_22' class="collapse in" align="left">
+    <pre>
+    
+pt1_22: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/crime_verify_score；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '6B76DE457D9BE8F78365F490EF9A79A6', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296487149'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'crime_verify_score': {'data': {'score': '59.07'}, 'code': '9100', 'msg': '查询成功有结果'}, 'query_id': '202012308221132074104808145000'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_23' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__23_重点关注人员评分</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_23' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_23'>通过</button>
+    <div id='div_pt1_23' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_23' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_23'>通过</button>
+    <div id='div_pt1_23' class="collapse in" align="left">
+    <pre>
+    
+pt1_23: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/attention_list；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '379E9FE53D1C4FBE68F0746B4D934A21', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296487341'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'attention_list': {'data': {'score': '59.07'}, 'code': '9100', 'msg': '查询成功有结果'}, 'query_id': '202012301922643150104808549700'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_24' class='none'>
+    <td class='failCase'><div class='testcase'>test__24_金融机构申请行为统计</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_24' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_24'>失败</button>
+    <div id='div_ft1_24' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_24' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_24'>失败</button>
+    <div id='div_ft1_24' class="collapse in" align="left">
+    <pre>
+    
+ft1_24: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/application_statistics；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '0A70BBF6F2D8E8025B8466F82E1F251D', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296487535'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_25' class='none'>
+    <td class='failCase'><div class='testcase'>test__25_风险多头回溯2_0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_25' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_25'>失败</button>
+    <div id='div_ft1_25' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_25' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_25'>失败</button>
+    <div id='div_ft1_25' class="collapse in" align="left">
+    <pre>
+    
+ft1_25: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/risk_mult_back；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'D41745886757FAFBAB4974B4602F7CC5', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296487608'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_26' class='none'>
+    <td class='failCase'><div class='testcase'>test__26_金融机构借还行为统计</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_26' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_26'>失败</button>
+    <div id='div_ft1_26' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_26' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_26'>失败</button>
+    <div id='div_ft1_26' class="collapse in" align="left">
+    <pre>
+    
+ft1_26: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/borrow_return_statistics；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'D85537E64139D07E47A6FBF94C7BD59E', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296487690'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_27' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__27_个人不良</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_27' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_27'>通过</button>
+    <div id='div_pt1_27' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_27' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_27'>通过</button>
+    <div id='div_pt1_27' class="collapse in" align="left">
+    <pre>
+    
+pt1_27: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/negative_info；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '96B9C1E5D3EA87648F49D9F87EEC756D', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296487764'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'negative_info': {'data': {'risk_level': 'C'}, 'code': '9100', 'msg': '查询成功有数据'}, 'query_id': '202012308341488637104808781300'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_28' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__28_实名认证</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_28' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_28'>通过</button>
+    <div id='div_pt1_28' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_28' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_28'>通过</button>
+    <div id='div_pt1_28' class="collapse in" align="left">
+    <pre>
+    
+pt1_28: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/two_element；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '19419B5F7206CA7ACCA3A2AC112A3382', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296487936'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'two_element': {'data': '认证信息匹配', 'code': '9100', 'msg': '校验成功匹配'}, 'query_id': '202012303361657385104809325300'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_29' class='none'>
+    <td class='failCase'><div class='testcase'>test__29_运营商三要素认证详版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_29' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_29'>失败</button>
+    <div id='div_ft1_29' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_29' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_29'>失败</button>
+    <div id='div_ft1_29' class="collapse in" align="left">
+    <pre>
+    
+ft1_29: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/three_element；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '448ACF4A96B5CB15945C2078A9F71324', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296488103'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_30' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__30_银行卡三要素简版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_30' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_30'>通过</button>
+    <div id='div_pt1_30' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_30' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_30'>通过</button>
+    <div id='div_pt1_30' class="collapse in" align="left">
+    <pre>
+    
+pt1_30: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/three_bank_card；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'card_no': '6212261611004243401', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'card_no': '0885234c1b2e3fb1dce44ed9c999ce9c62ed7bc6329a876e46fd38123b301b74', 'digital_signature': '4E903EF51625A25B01B6903BA0476CE3', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296488190'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'three_bank_card': {'code': '9200', 'msg': '校验成功不匹配', 'data': '校验成功不匹配'}, 'query_id': '202012309080559231104810994204'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_31' class='none'>
+    <td class='failCase'><div class='testcase'>test__31_银行卡三要素详版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_31' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_31'>失败</button>
+    <div id='div_ft1_31' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_31' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_31'>失败</button>
+    <div id='div_ft1_31' class="collapse in" align="left">
+    <pre>
+    
+ft1_31: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/three_bank_card_detail；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'card_no': '6212261611004243401', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'card_no': '0885234c1b2e3fb1dce44ed9c999ce9c62ed7bc6329a876e46fd38123b301b74', 'digital_signature': 'D920194271AEE92A0F809CD9B3D0427B', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296489647'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_32' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__32_银行卡四要素简版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_32' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_32'>通过</button>
+    <div id='div_pt1_32' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_32' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_32'>通过</button>
+    <div id='div_pt1_32' class="collapse in" align="left">
+    <pre>
+    
+pt1_32: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/four_element；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'card_no': '6212261611005243501', 'digital_signature': '', 'id_card': '445221198703211935', 'mobile': '13910685029', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'card_no': '2b1eb64e5c3bdd34a688618df2a0c549e22deee099a8813be0cd43fe7ca0220c', 'digital_signature': '232DD5970F38D1D6872D1B7CF9E2B365', 'id_card': 'bb0ee3e23a3b34f952104298dd3e25ba5d0f4155eb4dd109e6384d44889c497b', 'mobile': '3d7f4b1062128842ffeafd9a88007c03', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296489958'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'four_element': {'code': '9200', 'msg': '校验成功不匹配', 'data': '校验成功不匹配'}, 'query_id': '202012300523612589104811281304'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_33' class='none'>
+    <td class='failCase'><div class='testcase'>test__33_银行卡四要素详版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_33' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_33'>失败</button>
+    <div id='div_ft1_33' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_33' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_33'>失败</button>
+    <div id='div_ft1_33' class="collapse in" align="left">
+    <pre>
+    
+ft1_33: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/four_element_detail；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'card_no': '6212261611004243401', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'card_no': '0885234c1b2e3fb1dce44ed9c999ce9c62ed7bc6329a876e46fd38123b301b74', 'digital_signature': '25425753E2C762F25D7572B13B8B5C1A', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296490872'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_34' class='none'>
+    <td class='failCase'><div class='testcase'>test__34_运营商在网时长</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_34' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_34'>失败</button>
+    <div id='div_ft1_34' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_34' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_34'>失败</button>
+    <div id='div_ft1_34' class="collapse in" align="left">
+    <pre>
+    
+ft1_34: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/check_phone_time；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'mobile': '13910684028', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '9E2AEBED8788EBA47617F78EDC6268DB', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'timestamp': '1609296490955'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_35' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__35_运营商在网状态</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_35' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_35'>通过</button>
+    <div id='div_pt1_35' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_35' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_35'>通过</button>
+    <div id='div_pt1_35' class="collapse in" align="left">
+    <pre>
+    
+pt1_35: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/check_phone_status；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'mobile': '13910684028', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '619082148916B0C5B19AC2D2C55D2B02', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'timestamp': '1609296491024'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'check_phone_status': {'msg': '查询成功有数据', 'code': '9100', 'data': '移动-销号，未启用'}, 'query_id': '202012309305293997104812720400'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_36' class='none'>
+    <td class='failCase'><div class='testcase'>test__36_人像对比</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_36' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_36'>失败</button>
+    <div id='div_ft1_36' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_36' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_36'>失败</button>
+    <div id='div_ft1_36' class="collapse in" align="left">
+    <pre>
+    
+ft1_36: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/portrait_compare；请求方式:post
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'photo': 'iVBORw0KGgoAAAANSUhEUgAABTIAAAMcCAYAAABjJlo', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '4F2294EBD9900B0BD0189516D28DA76E', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'photo': 'aece7f07debef6af7045816ce967b57513a54d694fdba914321d1a8e67325a5dbed7ebfb5b3dd2d3cc18b7eed2dc54a5', 'timestamp': '1609296491236'}
+
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_37' class='none'>
+    <td class='failCase'><div class='testcase'>test__37_个人投资核查</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_37' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_37'>失败</button>
+    <div id='div_ft1_37' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_37' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_37'>失败</button>
+    <div id='div_ft1_37' class="collapse in" align="left">
+    <pre>
+    
+ft1_37: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/individual_investment_check；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'DA9B933F873C63C8FB6CE58E8B921A14', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'timestamp': '1609296491347'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_38' class='none'>
+    <td class='failCase'><div class='testcase'>test__38_运营商三要素认证简版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_38' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_38'>失败</button>
+    <div id='div_ft1_38' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_38' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_38'>失败</button>
+    <div id='div_ft1_38' class="collapse in" align="left">
+    <pre>
+    
+ft1_38: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/verify_name_mobile_card；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '74A6B0BE2EC4DAEA1B53B7FC18E3471C', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296491422'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_39' class='none'>
+    <td class='failCase'><div class='testcase'>test__39_个人工商信息</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_39' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_39'>失败</button>
+    <div id='div_ft1_39' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_39' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_39'>失败</button>
+    <div id='div_ft1_39' class="collapse in" align="left">
+    <pre>
+    
+ft1_39: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/business_info；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '05DD07D93DBAE015249CDAD20D6355B2', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'timestamp': '1609296491535'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_40' class='none'>
+    <td class='failCase'><div class='testcase'>test__40_人证对比</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_40' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_40'>失败</button>
+    <div id='div_ft1_40' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_40' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_40'>失败</button>
+    <div id='div_ft1_40' class="collapse in" align="left">
+    <pre>
+    
+ft1_40: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/id_verify_photo；请求方式:post
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'photo': 'qaaaaaaaaaaaaaaaaaaaaaa', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '9C81F7E257C7623DEA912E71F036A848', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'photo': '25e02851e973968234b8d9bf260546f1cb9310a60c98861d4eb06d989b44d8a4', 'timestamp': '1609296491651'}
+
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_41' class='none'>
+    <td class='failCase'><div class='testcase'>test__41_个人投资核查2_0</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_41' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_41'>失败</button>
+    <div id='div_ft1_41' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_41' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_41'>失败</button>
+    <div id='div_ft1_41' class="collapse in" align="left">
+    <pre>
+    
+ft1_41: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v2/person/individual_investment_check；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '72D78D91E162E915E0CDA2BBA499134F', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'timestamp': '1609296491725'}
+接口返回数据：{'err_code': '-1001', 'err_msg': '权限暂未开通'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_42' class='none'>
+    <td class='failCase'><div class='testcase'>test__42_银行卡账户类型核验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_42' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_42'>失败</button>
+    <div id='div_ft1_42' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_42' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_42'>失败</button>
+    <div id='div_ft1_42' class="collapse in" align="left">
+    <pre>
+    
+ft1_42: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/bankcard_verify；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'card_no': '6212261611004243401', 'digital_signature': '', 'id_card': '130604198505080610', 'mobile': '13910684028', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'card_no': '0885234c1b2e3fb1dce44ed9c999ce9c62ed7bc6329a876e46fd38123b301b74', 'digital_signature': 'BD1586034216667AB8DCE69249A83AA1', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'mobile': '2b3b4c5112540e928bb85e97728665e1', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296491827'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='ft1_43' class='none'>
+    <td class='failCase'><div class='testcase'>test__43_身份证有效期核验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_ft1_43' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_ft1_43'>失败</button>
+    <div id='div_ft1_43' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_ft1_43' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_ft1_43'>失败</button>
+    <div id='div_ft1_43' class="collapse in" align="left">
+    <pre>
+    
+ft1_43: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/validity_check；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'endDate': '20301009', 'id_card': '130604198505080610', 'name': '张伟', 'startDate': '20181009', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'ECF5CA3FF4A6EC467F6656F8E2D4C30C', 'endDate': '218b7419a62e2b6017445526d4789fd8', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'startDate': '9e11a374daa6d356f4972c0f9fea01bc', 'timestamp': '1609296491909'}
+接口返回数据：{'data': {}, 'err_msg': '权限暂未开通', 'err_code': '-1001'}
+******************测试结束，输出log完结********************
+Traceback (most recent call last):
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\library\ddt.py", line 150, in wrapper
+    return func(self, *args, **kwargs)
+  File "C:\Users\Administrator\PycharmProjects\zqxyIntreface\case\testCase.py", line 65, in test_
+    self.assertEqual(flag, True)
+AssertionError: False != True
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_44' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__44_车政通_车辆驾驶证查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_44' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_44'>通过</button>
+    <div id='div_pt1_44' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_44' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_44'>通过</button>
+    <div id='div_pt1_44' class="collapse in" align="left">
+    <pre>
+    
+pt1_44: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/vehicle_drivers_license；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '3E31A2470E3BCC97A03BC1C4FE8106D0', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296492023'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_license': {'code': '9100', 'msg': '查询成功有结果', 'data': {'fzXzqu': '京A', 'xm': '张伟', 'idcard': '130604198505080610', 'sex': '1', 'zt': 'A', 'validStartDate': '2015-07-09', 'arrowCarType': 'C1', 'state2': 1, 'validEndDate': '2025-07-09', 'state1': 1, 'firstIssueDate': '2009-07-09'}}, 'query_id': '202012308121351986104818050504'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_45' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__45_车政通_车辆行驶证查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_45' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_45'>通过</button>
+    <div id='div_pt1_45' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_45' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_45'>通过</button>
+    <div id='div_pt1_45' class="collapse in" align="left">
+    <pre>
+    
+pt1_45: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/vehicle_drivers_permit；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'carno': '湘B2UU99', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'carno': 'd18a7c5a93b5c58218a43d2205ba1494', 'digital_signature': 'BD6BA6B61F45ABC718ADAD860391416F', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296497929'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_permit': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202012307730637009104833834804'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_46' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__46_车政通_车辆行驶证查询详版</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_46' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_46'>通过</button>
+    <div id='div_pt1_46' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_46' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_46'>通过</button>
+    <div id='div_pt1_46' class="collapse in" align="left">
+    <pre>
+    
+pt1_46: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/vehicle_drivers_permit_detailed；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'carno': '湘B2UU99', 'digital_signature': '', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'carno': 'd18a7c5a93b5c58218a43d2205ba1494', 'digital_signature': '00C6DF5A2249685536A9EB5A3D560BAC', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296512410'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_permit_detailed': {'code': '9100', 'msg': '查询成功有结果', 'data': {'owerState': 0, 'bodyColor': 'A', 'crossWeight': '2060', 'engineType': 'N20B20C', 'useType': '', 'productionDate': '2015-01-27', 'carNo': '湘B2UU99', 'displacement': '1997', 'frameVIN': 'E20139', 'vehicleType': '', 'maxJourney': '128', 'loadWeight': '', 'brandName': '宝马牌', 'passengers': '5', 'retirementDate': '', 'plateType': '02', 'validityDayEnd': '', 'engineNumber': '0167D601', 'carOwerType': '2', 'rearTread': '', 'frontTread': '', 'fuelType': 'A', 'wheelbase': '', 'curbWeight': '', 'firstIssueDate': '2015-05-21', 'vehicleStatus': 'A', 'shaft': ''}}, 'query_id': '202012305049743850104838658804'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_47' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__47_车牌号与姓名核验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_47' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_47'>通过</button>
+    <div id='div_pt1_47' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_47' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_47'>通过</button>
+    <div id='div_pt1_47' class="collapse in" align="left">
+    <pre>
+    
+pt1_47: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/vehicle_drivers_name；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'carno': '湘B2UU99', 'digital_signature': '', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'carno': 'd18a7c5a93b5c58218a43d2205ba1494', 'digital_signature': 'AA52BB13B9C7EF125ECCAAAD8EF5D772', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296517488'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_name': {'code': '9100', 'msg': '查询成功有结果', 'data': {'owerState': 0}}, 'query_id': '202012304865289937104842375904'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_48' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__48_名下车产数量</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_48' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_48'>通过</button>
+    <div id='div_pt1_48' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_48' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_48'>通过</button>
+    <div id='div_pt1_48' class="collapse in" align="left">
+    <pre>
+    
+pt1_48: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/vehicle_drivers_num；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '44616A4F06EFFE93EB9A1842DA70D668', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'timestamp': '1609296521582'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_num': {'code': '9000', 'msg': '查询成功无结果'}, 'query_id': '202012300851110506104847893804'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_49' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__49_车辆驾驶证查询</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_49' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_49'>通过</button>
+    <div id='div_pt1_49' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_49' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_49'>通过</button>
+    <div id='div_pt1_49' class="collapse in" align="left">
+    <pre>
+    
+pt1_49: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/vehicle_drivers_license；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '130604198505080610', 'name': '张伟', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': 'F050C7C7E0980110A40050411E89187E', 'id_card': 'e0670683e4dd962e0f52b263084cd134f0a58085293e5fa97d72495610937dba', 'name': '90a830b1801fbf6bc0fa4788db777c31', 'timestamp': '1609296526479'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_license': {'code': '9100', 'msg': '查询成功有结果', 'data': {'fzXzqu': '京A', 'xm': '张伟', 'idcard': '130604198505080610', 'sex': '1', 'zt': 'A', 'validStartDate': '2015-07-09', 'arrowCarType': 'C1', 'state2': 1, 'validEndDate': '2025-07-09', 'state1': 1, 'firstIssueDate': '2009-07-09'}}, 'query_id': '202012302519805711104847527604'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_50' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__50_车牌和身份证一致校验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_50' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_50'>通过</button>
+    <div id='div_pt1_50' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_50' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_50'>通过</button>
+    <div id='div_pt1_50' class="collapse in" align="left">
+    <pre>
+    
+pt1_50: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/vehicle_drivers_idcard；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'carno': '鲁RQ5273', 'digital_signature': '', 'id_card': '64030219910312003X', 'timestamp': ''}
+加密后的请求数据：{'app_key': 'data_test', 'carno': 'debd2b91be76c4c257afa89d9712a6e4', 'digital_signature': 'B3B65A77CD602B05762F80B1211EACDE', 'id_card': '3db34e358e80921cbe544d40898f91004427b9556c95b041a8f1866c25cdf1a4', 'timestamp': '1609296526691'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_idcard': {'code': '9100', 'msg': '查询成功有结果', 'data': {'idcardState': 0}}, 'query_id': '202012304610382858104849238904'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='pt1_51' class='hiddenRow'>
+    <td class='passCase'><div class='testcase'>test__51_车架号与身份证一致校验</div></td>
+    <td colspan='5' align='center'>
+    <!--默认收起错误信息 -Findyou
+    <button id='btn_pt1_51' type="button"  class="btn btn-danger btn-xs collapsed" data-toggle="collapse" data-target='#div_pt1_51'>通过</button>
+    <div id='div_pt1_51' class="collapse">  -->
+    <!-- 默认展开错误信息 -Findyou -->
+    <button id='btn_pt1_51' type="button"  class="btn btn-danger btn-xs" data-toggle="collapse" data-target='#div_pt1_51'>通过</button>
+    <div id='div_pt1_51' class="collapse in" align="left">
+    <pre>
+    
+pt1_51: ******************测试开始前准备*******************
+请求url地址：http://10.10.10.226:8091/v1/person/vehicle_drivers_vin；请求方式:get
+加密前请求数据：{'app_key': 'data_test', 'digital_signature': '', 'id_card': '64030219910312003X', 'timestamp': '', 'vin': 'LSVG026R9F2086645'}
+加密后的请求数据：{'app_key': 'data_test', 'digital_signature': '6DFF75A4C983E5211125B67F703F3A4A', 'id_card': '3db34e358e80921cbe544d40898f91004427b9556c95b041a8f1866c25cdf1a4', 'timestamp': '1609296528062', 'vin': 'c434c8053087855de84b14d68876e4d336840a914b39d6fcb734cdd2e3944950'}
+接口返回数据：{'err_code': '200', 'err_msg': '请求成功', 'data': {'vehicle_drivers_vin': {'code': '9100', 'msg': '查询成功有结果', 'data': {'vinState': 0}}, 'query_id': '202012304555707078104850438104'}}
+******************测试结束，输出log完结********************
+
+
+    </pre>
+    </div>
+    </td>
+</tr>
+
+<tr id='total_row' class="text-center active">
+    <td>总计</td>
+    <td>51</td>
+    <td>18</td>
+    <td>33</td>
+    <td>0</td>
+    <td>通过率：35.29%</td>
+</tr>
+</table>
+
+<div id='ending'>&nbsp;</div>
+    <div style=" position:fixed;right:50px; bottom:30px; width:20px; height:20px;cursor:pointer">
+    <a href="#"><span class="glyphicon glyphicon-eject" style = "font-size:30px;" aria-hidden="true">
+    </span></a></div>
+    
+</body>
+</html>
